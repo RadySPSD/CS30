@@ -8,8 +8,33 @@ let xPos, yPos;
 
 function setup() {
   createCanvas(400, 300);
-  xPos = [width*0.05, width*0.95,width*0.05,width*0.95];
-  yPos = [height*0.05, height*0.05,height*0.95,height*0.95];
+  xPos = [];
+  yPos = [];
+  initWithLoops();
+  //xPos = [width*0.05, width*0.95,width*0.05,width*0.95];
+  //yPos = [height*0.05, height*0.05,height*0.95,height*0.95];
+}
+
+function initWithLoops(){
+  //lay down some initial circles, but using loops to do so
+  for(let x =0; x<width + 1; x+=20){
+    xPos.push(x);
+    yPos.push(height);
+  }
+  for(let x =0; x<width; x+=20){
+    xPos.push(x);
+    yPos.push(0);
+  }
+  for(let y =0; y<height; y+=20){
+    yPos.push(y);
+    xPos.push(width);
+  }
+  
+  
+  for(let y =0; y<height; y+=20){
+    yPos.push(y);
+    xPos.push(0);
+  }
 }
 
 function draw() {

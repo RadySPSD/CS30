@@ -28,7 +28,7 @@ function gridLines() {
 }
 
 function controlSize(){
-  if ( mouseButton === LEFT){
-    squareSize += 1;
+  if ( mouseIsPressed && mouseButton === LEFT){
+    squareSize = squareSize += 10;
   }
 }

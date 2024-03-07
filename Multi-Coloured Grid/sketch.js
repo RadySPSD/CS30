@@ -11,11 +11,11 @@ let squareSize = 40;
 
 function setup() {
   createCanvas(400, 400);
+  document.addEventListener("contextmenu", event => event.preventDefault());
 }
 
 function draw() {
   background(220);
-  controlSize();
   gridLines();
 }
 
@@ -27,8 +27,12 @@ function gridLines() {
   }
 }
 
-function controlSize(){
+function mousePressed(){
   if ( mouseIsPressed && mouseButton === LEFT){
-    squareSize = squareSize += 10;
+    if(squareSize < 400) {squareSize = squareSize += 20;}
+  }
+
+  if ( mouseIsPressed && mouseButton === RIGHT){
+    if(squareSize > 10) {squareSize = squareSize -= 10;}
   }
 }

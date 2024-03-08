@@ -5,7 +5,7 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
-let squareSize = 40;
+let squareSize = 200;
 
 
 
@@ -29,10 +29,10 @@ function gridLines() {
 
 function mousePressed(){
   if ( mouseIsPressed && mouseButton === LEFT){
-    if(squareSize < 400) {squareSize = squareSize += 20;}
+    if(squareSize < 200) {squareSize = squareSize * 2;}
   }
 
   if ( mouseIsPressed && mouseButton === RIGHT){
-    if(squareSize > 10) {squareSize = squareSize -= 10;}
+    if(squareSize > 10) {squareSize = squareSize / 2;}
   }
 }

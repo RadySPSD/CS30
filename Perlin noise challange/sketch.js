@@ -7,7 +7,7 @@
 
 
 let circleSize;
-let circleTime = .10;
+let circleTime = 10;
 
 function setup() {
   createCanvas(400, 400);
@@ -19,9 +19,12 @@ function draw() {
 }
 
 function diameter(){
+  circleTime += 0.01;
   circleSize = noise(circleTime);
-  //circleSize = map(circleSize,10,10,10,10);
-  strokeWeight(10);
+  circleSize = map(circleSize,0,1,10,100);
+  fill(220);
+  strokeWeight(5);
   circle(200,200,circleSize);
+  circleTime;
 
 }

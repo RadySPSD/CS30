@@ -7,6 +7,7 @@
 
 let rectWidth = 1;
 let rectTime = 1;
+let highestPoint = 0;
 
 
 function setup() {
@@ -27,6 +28,11 @@ function drawRectangles(){
     rectHeight = noise(rectTime);
     rectHeight = map(rectHeight,0,1,0,height*-0.8);
     rect(x, height,rectWidth,rectHeight);
+    
+    if (highestPoint < rectHeight){
+      highestPoint = rectHeight;
+    }
+    
 
   }
 }

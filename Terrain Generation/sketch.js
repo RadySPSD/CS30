@@ -44,3 +44,4 @@ function drawFlag(x, y){
 
 function draw() {
 }
+//hello

@@ -23,12 +23,13 @@ function draw() {
 
 }
 
-function gridLines() { // making the grids
-  for (let x = 0; x < width; x = x + squareSize) { //the squares width
-    for (let y = 0; y < height; y = y + squareSize) { //the squares height
+function gridLines() { // making the grid using nested loops
+  for (let x = 0; x < width; x = x + squareSize) { //the square's width
+    for (let y = 0; y < height; y = y + squareSize) { //the square's height
       
-      colorTime += .01; // much it changes by
+      colorTime += 1;
 
+      //randomizing the colours using noise
       r = noise(colorTime);
       r = map(r,0,1,1,255);
 
@@ -38,6 +39,7 @@ function gridLines() { // making the grids
       b = noise(colorTime);
       b = map(b,0,1,255,100);
 
+      //drawing the quares
       squareColour = color(r, g, b);
       fill(squareColour);
       square(x, y, squareSize);
@@ -45,17 +47,17 @@ function gridLines() { // making the grids
   }
 }
 
-function mousePressed(){
+function mousePressed(){ //right click and left click change the square size
   if ( mouseIsPressed && mouseButton === LEFT){
     if(squareSize < 200) {squareSize = squareSize * 2;}
   }
 
-  if ( mouseIsPressed && mouseButton === RIGHT){
+  if ( mouseIsPressed && mouseButton === RIGHT){ 
     if(squareSize > 20) {squareSize = squareSize / 2;}
   }
   gridLines();
 }
 
-function keyPressed(){
+function keyPressed(){ //key press generates new colours
   gridLines();
 }

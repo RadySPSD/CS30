@@ -8,7 +8,7 @@ let squareSize;
 let squareColour;
 let r; let g; let b; //the colours
 let colorTime = 10; //for the noise functions
-let canvasSize = 200; //size of canvas (can be changed)
+let canvasSize = 700; //size of canvas (can be changed)
 
 squareSize = canvasSize/2; //adjusts grid to fit no matter the canvas size
 

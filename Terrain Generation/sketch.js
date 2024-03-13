@@ -7,6 +7,8 @@
 
 let rectWidth = 1;
 let rectTime = 1;
+let highestPoint = 0;
+let xForHighestPoint = 0;
 
 
 function setup() {
@@ -20,15 +22,24 @@ function drawRectangles(){
   fill(0);
   for(let x = 0; x < width; x += rectWidth){
     
-    //rectHeight = (random (0,height*-0.8));
-    //rect(x, height,rectWidth,rectHeight);
-
     rectTime += 0.01;
     rectHeight = noise(rectTime);
     rectHeight = map(rectHeight,0,1,0,height*-0.8);
     rect(x, height,rectWidth,rectHeight);
+    
+    if (rectHeight < highestPoint){
+      highestPoint = rectHeight;
+      xForHighestPoint = x;
+    }
 
   }
+  drawFlag(xForHighestPoint,height + highestPoint - 10);
+}
+
+function drawFlag(x, y){
+  line(x,y,x, y + 12.5);
+  fill(100);
+  triangle(x,y,x,y - 12.5, x + 12.5 , y - 6.25);
 }
 
 function draw() {

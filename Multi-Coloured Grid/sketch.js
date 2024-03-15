@@ -53,7 +53,7 @@ function mousePressed(){ //right click and left click change the square size
   }
 
   if ( mouseIsPressed && mouseButton === RIGHT){ 
-    if(squareSize > 20) {squareSize = squareSize / 2;}
+    if(squareSize > 40) {squareSize = squareSize / 2;}
   }
   gridLines();
 }

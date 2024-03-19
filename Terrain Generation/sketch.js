@@ -18,12 +18,14 @@ function setup() {
 }
 
 function drawRectangles(){
+  highestPoint = 0;
   let rectHeight;
   fill(0);
+  let timeX = rectTime;
   for(let x = 0; x < width; x += rectWidth){
     
-    rectTime += 0.01;
-    rectHeight = noise(rectTime);
+    timeX += 0.01;
+    rectHeight = noise(timeX);
     rectHeight = map(rectHeight,0,1,0,height*-0.8);
     rect(x, height,rectWidth,rectHeight);
     
@@ -43,5 +45,8 @@ function drawFlag(x, y){
 }
 
 function draw() {
+  background(255);
+  rectTime += 0.05;
+  drawRectangles();
 }
 //hello

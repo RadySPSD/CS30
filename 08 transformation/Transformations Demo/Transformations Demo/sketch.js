@@ -8,51 +8,57 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
 }
 
-function draw() {
+function draw() {  //coordinate system reverts
   background(255);
   drawBasicGrid(220);
 
 
   //transformation one: TRANSLATION
-  //translate(150,50);
-  //drawBasicGrid(150);
-  //rectangleRed(0,0);
-  //rectangleBlue(-50,-40)
+  // push();  
+  // translate(150,50); //apply to the coordinate system
+  // drawBasicGrid(150);
+  // rectangleRed(0,0);
+  // pop(); ///revert back to the original system
+  // rectangleBlue(0,0);
 
-  //push()  - makes a new copy of coordinate system
-  //pop() - removes the current coordinate system
+  // push()  - makes a new copy of coordinate s 
+  // pop() - removes the current coordinate s
 
 
 
 
   //transformation two: SCALE
+  // rectangleRed(40,0);
 
+  // let scaleAmount = map(mouseX,0, width, 1,10);
+  // // 1 - no change   <1 - smaller   >1 - larger
+  // // for transformations: the order matter
+  // translate(140,140);
+  // scale(scaleAmount);
+  // drawBasicGrid(100);
+  // rectMode(CENTER);
+  // rectangleBlue(100,100);
 
 
 
   //transformation three: ROTATION
   //reminder: rotations are measured in radians, not degrees! Functions can help with the conversion...
-  // rectangleRed(40,0);
-
-  // let scaleAmount = (mouseX,0,width,1,10);
-
-  // translate(140,140);
-  // scale(scaleAmount);
-  // drawBasicGrid(100);
-  // rectMode(CENTER);
-  // rectangleBlue(0,0);
-
-  angleMode(degrees);
-  rotate(45);
+ //radians() → convert degrees to radians
+  //in setup: use angleMode(DEGREES)
+  //rotational center is always the origin.
+  //if you want to rotate an objet around its center, place
+  //its center on the origin.
+  push();
+  angleMode(DEGREES)
+  rotate(45);  //var that counts up once per frame
   translate(200,0);
   rotate(frameCount);
-  drawBasicGrid(100);
+  //drawBasicGrid(100);
   face(0,0);
-
-
+  pop();
   //Combinations of Transformations
 
-  
+  rectangleBlue(300,300);
 
 }
 

@@ -5,7 +5,7 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
-let rectWidth = 1;
+let rectWidth = 2;
 let rectTime = 1;
 let highestPoint = 0;
 let xForHighestPoint = 0;
@@ -29,11 +29,12 @@ function drawRectangles(){
     rectHeight = map(rectHeight,0,1,0,height*-0.8);
     rect(x, height,rectWidth,rectHeight);
     
+    
     if (rectHeight < highestPoint){
       highestPoint = rectHeight;
-      xForHighestPoint = x;
+      xForHighestPoint = x;      
+      
     }
-
   }
   drawFlag(xForHighestPoint,height + highestPoint - 10);
 }
@@ -44,9 +45,16 @@ function drawFlag(x, y){
   triangle(x,y,x,y - 12.5, x + 12.5 , y - 6.25);
 }
 
+function avarageLine(avarage){
+  fill(255,0,0);
+  rect(0,avarage,width,10);
+}
+
 function draw() {
   background(255);
-  rectTime += 0.05;
+  rectTime += 0.03;
+  avarageLine(heightAvarage);
+  console.log(heightAvarage);
   drawRectangles();
 }
 //hello

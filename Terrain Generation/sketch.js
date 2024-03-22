@@ -5,7 +5,7 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
-let rectWidth = 1;
+let rectWidth = 3;
 let rectTime = 1;
 let highestPoint = 0;
 let xForHighestPoint = 0;
@@ -39,7 +39,7 @@ function drawRectangles(){
     }
   }
   drawFlag(xForHighestPoint,height + highestPoint - 10);    
-  avgHeight = avgHeight / (width/rectWidth);
+  avgHeight = (avgHeight / (width/rectWidth)) + 700
   avarageLine(avgHeight);
   console.log(avgHeight);
 }
@@ -52,7 +52,7 @@ function drawFlag(x, y){
 
 function avarageLine(avarage){
   fill(255,0,0);
-  rect(0,avarage * -1 ,width,10);
+  rect(0,avarage ,width,10);
 }
 
 function draw() {

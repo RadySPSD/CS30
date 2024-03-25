@@ -53,8 +53,8 @@ function avarageLine(avarage){
 function draw() {
   background(255);
   rectTime += 0.03;
-  avarageLine(heightAvarage);
-  console.log(heightAvarage);
+  //avarageLine(heightAvarage);
+  //console.log(heightAvarage);
   drawRectangles();
 }
 //hello

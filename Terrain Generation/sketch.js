@@ -5,11 +5,11 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
-let rectWidth = 2;
+let rectWidth = 3;
 let rectTime = 1;
 let highestPoint = 0;
 let xForHighestPoint = 0;
-
+let avgHeight = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -28,15 +28,20 @@ function drawRectangles(){
     rectHeight = noise(timeX);
     rectHeight = map(rectHeight,0,1,0,height*-0.8);
     rect(x, height,rectWidth,rectHeight);
-    
-    
+
+    avgHeight += rectHeight;
+
+
     if (rectHeight < highestPoint){
       highestPoint = rectHeight;
-      xForHighestPoint = x;      
+      xForHighestPoint = x;
       
     }
   }
-  drawFlag(xForHighestPoint,height + highestPoint - 10);
+  drawFlag(xForHighestPoint,height + highestPoint - 10);    
+  avgHeight = (avgHeight / (width/rectWidth)) + 700
+  avarageLine(avgHeight);
+  console.log(avgHeight);
 }
 
 function drawFlag(x, y){
@@ -47,14 +52,16 @@ function drawFlag(x, y){
 
 function avarageLine(avarage){
   fill(255,0,0);
-  rect(0,avarage,width,10);
+  rect(0,avarage ,width,10);
 }
 
 function draw() {
   background(255);
   rectTime += 0.03;
+<<<<<<< HEAD
   //avarageLine(heightAvarage);
   //console.log(heightAvarage);
+=======
+>>>>>>> 15068e1ba4bc10f0bceb8dd0a6e071cf630ecebf
   drawRectangles();
 }
-//hello

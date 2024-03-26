@@ -8,66 +8,74 @@ let rectWidth = 1;
 let rectTime = 1;
 let highestPoint = 0;
 let xForHighestPoint = 0;
+let rectCount = 0;
 let avgHeight = 0;
 
 //functions
 function setup() {
   createCanvas(windowWidth, windowHeight);
   background(255);
-  //drawRectangles();
+  drawRectangles();
 }
 
 //terrain generator
 function drawRectangles(){
-  highestPoint = 0;
+  let highestY = height; 
   let rectHeight;
   fill(0);
   let timeX = rectTime;
+  
+  //reseting the values of the cariables
+  highestPoint = 0;
+  avgHeight = 0;
+  rectCount = 0;
+  
   for(let x = 0; x < width; x += rectWidth){
-    
     timeX += 0.01;
-    rectHeight = noise(timeX);
-    rectHeight = map(rectHeight,0,1,0,height * - 0.8);
-    
-    rect(x, height,rectWidth,rectHeight);
-    
+    rectHeight = map(noise(timeX), 0, 1, 0, height * 0.8);
+
+    rectCount++;
+
     //adding up all the rectangles to get the average
     avgHeight += rectHeight;
-
+    
     //looking for the highest point
-    if (rectHeight < highestPoint){
+    if (rectHeight > highestPoint) {
       highestPoint = rectHeight;
       xForHighestPoint = x;
-      
     }
+
+    rect(x, height, rectWidth, rectHeight * -1);
+    
+
   }
-  
+
   //drawing the flag
-  drawFlag(xForHighestPoint,height + highestPoint - 10);   
+  drawFlag(xForHighestPoint, height - highestPoint - 10);
   
   //calculating the average
-  avgHeight = (avgHeight / (width/rectWidth)) + 700;
+  avgHeight = avgHeight/rectCount;
+    
   //drawing the avrage line
-  avarageLine( height - avgHeight);
-  
-  //console.log(avgHeight);
+  averageLine(height - avgHeight);
 }
 
 //function that draws the flag
 function drawFlag(x, y){
-  line(x,y,x, y + 12.5);
+  line(x, y, x, y + 12.5);
   fill(100);
-  triangle(x,y,x,y - 12.5, x + 12.5 , y - 6.25);
+  triangle(x, y, x, y - 12.5, x + 12.5 , y - 6.25);
 }
 
-function avarageLine(avarage){
+//function that draws the average line
+function averageLine(avarage){
   fill(255,0,0);
   rect(0,avarage ,width,10);
 }
 
-//main draw function
+//draw main function
 function draw() {
-  background(255);
+  background(225);
   rectTime += 0.03;
   drawRectangles();
 }

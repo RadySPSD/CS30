@@ -20,14 +20,14 @@ function randomElement(currentLen){
     rotate(random(-45,45));
     line(0,0,0,currentLen);
     translate(0,currentLen);
-    currentLen += 0.75;
+    currentLen *= 0.75;
   }
   pop();
 }
 
 function draw() {
   translate(width/2,height/2);
-  for(let i=0; i<500; i++){
+  for(let i=0; i<1; i++){
     randomElement(random(20,70));
   }
 }

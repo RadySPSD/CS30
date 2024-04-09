@@ -13,3 +13,17 @@ function setup() {
 function draw() {
   background(220);
 }
+
+
+class Round{
+
+  //first, the constructor
+  constructor(y,col){
+
+  }
+
+  //then, the class methods
+
+  move(){}
+  display(){}
+}

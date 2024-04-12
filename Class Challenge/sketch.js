@@ -5,25 +5,47 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
-
+let racers = [];
+const NUM_RACERS = 1;
+let color = 0;
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  //set up some walker objects
+  for(let i = 0; i < NUM_RACERS; i++){
+      
+    racers.push(new RoundRacer(height/2 - 70,color));
+    racers.push(new RoundRacer(height/2,color));
+    racers.push(new RoundRacer(height/2 + 70,color));
+  }
 }
 
 function draw() {
   background(220);
+
+  for(let w of racers){
+    w.move();
+    w.display();
+  }
 }
 
-
-class Round{
-
-  //first, the constructor
-  constructor(y,col){
-
+class RoundRacer {
+  constructor (yPosition, color){
+    this.xPosition = 0;
+    this.yPosition = yPosition;
+    this.xSpeed = random(3,15);
+    this.color = color;
   }
 
-  //then, the class methods
+  //class methods
+  move(){
+    this.xPosition += this.xSpeed;
+    if (this.xPosition > width){
+      this.xPosition = 0;
+    }
+  }
 
-  move(){}
-  display(){}
+  display(){
+    fill(color);
+    circle(this.xPosition,this.yPosition, 50);
+  }
 }

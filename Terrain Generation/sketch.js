@@ -4,12 +4,32 @@
 // terrain that generates and a flag that goes to the highest point and a line that stays on the avrage height
 
 //variables
-let rectWidth = 1;
+let rectWidth = 2;
 let rectTime = 1;
 let highestPoint = 0;
 let xForHighestPoint = 0;
 let rectCount = 0;
 let avgHeight = 0;
+let keyPressedFlag = false; // Flag to track if a key is pressed
+
+// Changing the smoothness of the terrain
+function keyPressed() {
+  if (keyCode === LEFT_ARROW) {
+      if (rectWidth < 3){
+              rectWidth+= 0.1;
+      }
+    } 
+  if (keyCode === RIGHT_ARROW) {
+      if (rectWidth > 1){
+              rectWidth-= 0.1;
+      }
+}
+}
+
+function keyReleased() {
+  keyPressedFlag = false; // Reset the flag when the key is released
+}
+
 
 //functions
 function setup() {

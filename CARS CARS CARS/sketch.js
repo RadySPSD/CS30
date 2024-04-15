@@ -18,8 +18,8 @@ function draw() {
   background(255);
   drawRoad();
   for(let w of vehicles){
-    w.move();
     w.display();
+    w.move();
   }
 }
 
@@ -51,16 +51,16 @@ class Vehicle{
   //class methods
 
   move(){
-    this.xPosition = 0;
+    this.xPosition = 100;
     this.yPosition = 0;
-
+    randomSeed(1);
     if (this.direction === 0 ){ //coming from west
-    this.yPosition = random(0, height/2);
+    this.yPosition = random(height/3,height/2);
     this.xPosition += this.speed;
     }
 
     if (this.direction === 1){ //coming from east
-      this.yPosition = random(height/2, height);
+      this.yPosition = random(height/2,height);
       this.xPosition -= this.speed;
     }
   }
@@ -73,13 +73,13 @@ class Vehicle{
       fill(this.carColor);
       rect(this.xPosition,this.yPosition,100,40);
       fill(255);
-      rect(this.xPosition + 10,this.yPosition +40,20,8);
-      rect(this.xPosition + 70,this.yPosition +40,20,8);
-      rect(this.xPosition + 10,this.yPosition -9,20,8);
-      rect(this.xPosition + 70,this.yPosition -9,20,8);
+      rect(this.xPosition - 40,this.yPosition - 20,20,8);
+      rect(this.xPosition + 40,this.yPosition - 20,20,8);
+      rect(this.xPosition - 40,this.yPosition + 20,20,8);
+      rect(this.xPosition + 40,this.yPosition + 20,20,8);
     }
 
-    //drawing the car
+    //drawing the truck
     if(this.type === 1){
       fill(this.carColor);
       rect(this.xPosition,this.yPosition,100,60);

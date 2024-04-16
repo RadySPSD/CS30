@@ -28,12 +28,12 @@ function drawRoad(){
   rectMode(CENTER);
   fill(0);
   rect(width/2,height/2,width,height*0.75);
-  let space = 50
+  let space = 50;
   //drawing the yellow line
   for (let i = 0; i < width; i += 40){
     fill(255,255,0);
     rect(i += space, height/2, 50, 5);
-    space += 0.1    
+    space += 0.1;
   }
 }
 
@@ -55,8 +55,11 @@ class Vehicle{
     this.yPosition = 0;
     randomSeed(1);
     if (this.direction === 0 ){ //coming from west
-    this.yPosition = random(height/3,height/2);
-    this.xPosition += this.speed;
+      this.yPosition = random(height/3,height/2);
+      for (let i = 0; i < width; i+=1){
+        this.xPosition += this.speed;
+
+      }
     }
 
     if (this.direction === 1){ //coming from east
@@ -67,8 +70,7 @@ class Vehicle{
 
   //display
   display(){
-    //drawing the car. NOTE: change the width/2 and the height/2
-    //to where ever you want the vehicles to be
+    //drawing the car
     if (this.type === 0){
       fill(this.carColor);
       rect(this.xPosition,this.yPosition,100,40);
@@ -85,6 +87,5 @@ class Vehicle{
       rect(this.xPosition,this.yPosition,100,60);
       rect(this.xPosition,this.yPosition,30,60);
     }
-
   }
 }

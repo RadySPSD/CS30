@@ -56,10 +56,6 @@ class Vehicle{
     randomSeed(1);
     if (this.direction === 0 ){ //coming from west
       this.yPosition = random(height/3,height/2);
-      for (let i = 0; i < width; i+=1){
-        this.xPosition += this.speed;
-
-      }
     }
 
     if (this.direction === 1){ //coming from east

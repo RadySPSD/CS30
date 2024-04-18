@@ -11,7 +11,16 @@ const NUM_VEHICLES = 1;
 //functions
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  vehicles.push(new Vehicle());
+  //vehicles.push(new Vehicle());
+
+
+  for ( let i = 0; i < 10 ; i++){
+    vehicles.push(new Vehicle());
+  }
+  for (let w of vehicles){
+    w.spawn();
+  }
+  
 }
 
 function draw() {
@@ -50,16 +59,25 @@ class Vehicle{
 
   //class methods
 
-  move(){
-    this.xPosition = 100;
+  spawn(){
     this.yPosition = 0;
-    randomSeed(1);
     if (this.direction === 0 ){ //coming from west
-      this.yPosition = random(height/3,height/2);
+      this.yPosition = random(height/6,height/2);
+      this.xPosition = 0;
     }
 
     if (this.direction === 1){ //coming from east
-      this.yPosition = random(height/2,height);
+      this.yPosition = random(height/2,height - height/6);
+      this.xPosition = 400;
+    }
+  }
+
+  move(){
+    if (this.direction === 0 ){ //coming from west
+      this.xPosition += this.speed;
+    }
+
+    if (this.direction === 1){ //coming from east
       this.xPosition -= this.speed;
     }
   }

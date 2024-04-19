@@ -29,6 +29,8 @@ function draw() {
   for(let w of vehicles){
     w.display();
     w.move();
+    w.speedUp();
+    w.speedDown();
   }
 }
 
@@ -75,10 +77,52 @@ class Vehicle{
   move(){
     if (this.direction === 0 ){ //coming from west
       this.xPosition += this.speed;
+      if (this.xPosition > width + 50){
+        this.xPosition = 0 - 50;
+      }
     }
 
     if (this.direction === 1){ //coming from east
       this.xPosition -= this.speed;
+      if (this.xPosition < 0 - 50){
+        this.xPosition = width + 50;
+      }
+    }
+  }
+
+  speedUp(){
+    if (round(random(0,101)) === 1){
+      
+      if (this.direction === 0){ //coming from west
+        if (this.speed < 15){
+          this.speed += 1;
+          console.log("fastu");
+        }
+      }
+      if (this.direction === 1){ //coming from east
+        if (this.speed > -15){
+          this.speed -= 1;
+          console.log("fastd");
+        }
+      }
+    }
+  }
+
+  speedDown(){
+    if (round(random(0,101)) === 1){
+      
+      if (this.direction === 0){ //coming from west
+        if (this.speed > 0){
+          this.speed -= 1;
+          console.log("slowu");
+        }
+      }
+      if (this.direction === 1){ //coming from east
+        if (this.speed > -15){
+          this.speed += 1;
+          console.log("slowd");
+        }
+      }
     }
   }
 

@@ -112,7 +112,7 @@ class Vehicle{
     if (round(random(0,101)) === 1){
       
       if (this.direction === 0){ //coming from west
-        if (this.speed > 0){
+        if (this.speed > 1){
           this.speed -= 1;
           console.log("slowu");
         }

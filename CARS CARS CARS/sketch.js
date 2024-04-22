@@ -31,6 +31,7 @@ function draw() {
     w.move();
     w.speedUp();
     w.speedDown();
+    w.changeColor()
   }
 }
 
@@ -56,7 +57,7 @@ class Vehicle{
     this.xPosition = xPosition;
     this.yPosition = yPosition; 
     this.direction = round(random(0,1)); 
-    this.speed = random(0,10);
+    this.speed = round(random(0,10));
   }
 
   //class methods
@@ -83,7 +84,7 @@ class Vehicle{
     }
 
     if (this.direction === 1){ //coming from east
-      this.xPosition -= this.speed;
+      this.xPosition += -1 * this.speed;
       if (this.xPosition < 0 - 50){
         this.xPosition = width + 50;
       }
@@ -93,36 +94,28 @@ class Vehicle{
   speedUp(){
     if (round(random(0,101)) === 1){
       
-      if (this.direction === 0){ //coming from west
+
         if (this.speed < 15){
           this.speed += 1;
-          console.log("fastu");
+          //console.log("fastu");
         }
-      }
-      if (this.direction === 1){ //coming from east
-        if (this.speed > -15){
-          this.speed -= 1;
-          console.log("fastd");
-        }
-      }
+      
     }
   }
 
   speedDown(){
     if (round(random(0,101)) === 1){
-      
-      if (this.direction === 0){ //coming from west
         if (this.speed > 1){
           this.speed -= 1;
-          console.log("slowu");
+          //console.log("slowu");
         }
-      }
-      if (this.direction === 1){ //coming from east
-        if (this.speed > -15){
-          this.speed += 1;
-          console.log("slowd");
-        }
-      }
+    }
+  }
+
+  changeColor(){
+    if (round(random(0,101)) === 1){
+      this.carColor = color (random(255),random(255),random(255));
+      //console.log("color");
     }
   }
 

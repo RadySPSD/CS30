@@ -14,16 +14,7 @@ let keyPressedFlag = false; // Flag to track if a key is pressed
 
 // Changing the smoothness of the terrain
 function keyPressed() {
-  if (keyCode === LEFT_ARROW) {
-    if (rectWidth < 3){
-      rectWidth+= 0.1;
-    }
-  } 
-  if (keyCode === RIGHT_ARROW) {
-    if (rectWidth > 1){
-      rectWidth-= 0.1;
-    }
-  }
+
 }
 
 function keyReleased() {

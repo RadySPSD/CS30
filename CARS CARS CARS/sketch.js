@@ -28,10 +28,7 @@ function draw() {
   drawRoad();
   for(let w of vehicles){
     w.display();
-    w.move();
-    w.speedUp();
-    w.speedDown();
-    w.changeColor()
+    w.action;
   }
 }
 
@@ -93,22 +90,19 @@ class Vehicle{
 
   speedUp(){
     if (round(random(0,101)) === 1){
-      
-
-        if (this.speed < 15){
-          this.speed += 1;
-          //console.log("fastu");
-        }
-      
+      if (this.speed < 15){
+        this.speed += 1;
+        
+      }
     }
   }
 
   speedDown(){
     if (round(random(0,101)) === 1){
-        if (this.speed > 1){
-          this.speed -= 1;
-          //console.log("slowu");
-        }
+      if (this.speed > 1){
+        this.speed -= 1;
+        //console.log("slowu");
+      }
     }
   }
 
@@ -117,6 +111,14 @@ class Vehicle{
       this.carColor = color (random(255),random(255),random(255));
       //console.log("color");
     }
+  }
+
+  action(){
+    this.display();
+    this.move();
+    this.speedUp();
+    this.speedDown();
+    this.changeColor();
   }
 
   //display

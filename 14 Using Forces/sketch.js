@@ -15,7 +15,6 @@ function setup() {
 
 function mousePressed(){  
   particles.push(new Particle(mouseX,mouseY));
-
 }
 
 function draw() {
@@ -38,7 +37,6 @@ class Particle{
 
   move(){
     this.velocity.add(gravity);
-
     this.position.add(this.velocity);
   }
 

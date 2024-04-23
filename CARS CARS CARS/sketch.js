@@ -28,7 +28,10 @@ function draw() {
   drawRoad();
   for(let w of vehicles){
     w.display();
-    w.action;
+    w.move();
+    w.speedUp();
+    w.speedDown();
+    w.changeColor();
   }
 }
 

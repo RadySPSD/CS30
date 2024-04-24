@@ -27,11 +27,8 @@ function draw() {
   background(255);
   drawRoad();
   for(let w of vehicles){
-    w.display();
-    w.move();
-    w.speedUp();
-    w.speedDown();
-    w.changeColor();
+    //w.display();
+    w.action();
   }
 }
 

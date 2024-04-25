@@ -53,6 +53,9 @@ function drawRoad(){
   }
 }
 
+function addCars(){
+  
+}
 //the Vehicle class
 class Vehicle{
   constructor(xPosition,yPosition,direction){

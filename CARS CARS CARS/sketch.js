@@ -5,7 +5,10 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
-let vehicles = [];
+//variables
+let eastbound = [];
+let westbound = [];
+//let vehicles = [];
 const NUM_VEHICLES = 1;
 
 //functions
@@ -14,28 +17,32 @@ function setup() {
   //vehicles.push(new Vehicle());
 
 
-  for ( let i = 0; i < 10 ; i++){
-    vehicles.push(new Vehicle());
+  for ( let i = 0; i < 20 ; i++){
+    westbound.push(new Vehicle(0,0,0));
   }
-  for (let w of vehicles){
-    w.spawn();
+
+  for ( let i = 0; i < 20 ; i++){
+    eastbound.push(new Vehicle(0,0,1));
   }
+
   
 }
 
 function draw() {
   background(255);
   drawRoad();
-  for(let w of vehicles){
-    //w.display();
+  for(let w of westbound){
     w.action();
+  }
+  for(let e of eastbound){
+    e.action();
   }
 }
 
 //drawing the road
 function drawRoad(){
   rectMode(CENTER);
-  fill(0);
+  fill(40);
   rect(width/2,height/2,width,height*0.75);
   let space = 50;
   //drawing the yellow line
@@ -48,13 +55,14 @@ function drawRoad(){
 
 //the Vehicle class
 class Vehicle{
-  constructor(type,carColor,xPosition,yPosition,direction,Speed){
+  constructor(xPosition,yPosition,direction){
     this.type = round(random(0,1)); 
     this.carColor = color (random(255),random(255),random(255)); 
     this.xPosition = xPosition;
     this.yPosition = yPosition; 
-    this.direction = round(random(0,1)); 
+    this.direction = direction; 
     this.speed = round(random(0,10));
+    this.spawn();
   }
 
   //class methods
@@ -62,13 +70,13 @@ class Vehicle{
   spawn(){
     this.yPosition = 0;
     if (this.direction === 0 ){ //coming from west
-      this.yPosition = random(height/6,height/2);
-      this.xPosition = 0;
+      this.yPosition = random(height/6,height/2.2);
+      this.xPosition = random(0,width);
     }
 
     if (this.direction === 1){ //coming from east
-      this.yPosition = random(height/2,height - height/6);
-      this.xPosition = 400;
+      this.yPosition = random(height/1.8,height - height/6);
+      this.xPosition = random(0,width);
     }
   }
 

@@ -6,6 +6,9 @@
 // - describe what you did to take this project "above and beyond"
 
 //variables
+let eastCars = 20;
+let westCars = 20;
+
 let eastbound = [];
 let westbound = [];
 //let vehicles = [];
@@ -17,11 +20,11 @@ function setup() {
   //vehicles.push(new Vehicle());
 
 
-  for ( let i = 0; i < 20 ; i++){
+  for ( let i = 0; i < westCars ; i++){
     westbound.push(new Vehicle(0,0,0));
   }
 
-  for ( let i = 0; i < 20 ; i++){
+  for ( let i = 0; i < eastCars ; i++){
     eastbound.push(new Vehicle(0,0,1));
   }
 
@@ -39,6 +42,16 @@ function draw() {
   }
 }
 
+function mousePressed(){
+  if ( mouseButton === LEFT && keyCode === SHIFT && keyIsPressed){
+    westbound.push(new Vehicle(0,0,0));
+  }
+  else if ( mouseButton === LEFT){
+    eastbound.push(new Vehicle(0,0,1));
+  }
+  
+}
+
 //drawing the road
 function drawRoad(){
   rectMode(CENTER);
@@ -53,9 +66,7 @@ function drawRoad(){
   }
 }
 
-function addCars(){
-  
-}
+
 //the Vehicle class
 class Vehicle{
   constructor(xPosition,yPosition,direction){

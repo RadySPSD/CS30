@@ -4,14 +4,14 @@
 //
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
-
 //variables
 let eastCars = 20;
 let westCars = 20;
+let speed;
 
 let eastbound = [];
 let westbound = [];
-lightArray = []
+let lightArray = [];
 //let vehicles = [];
 const NUM_VEHICLES = 1;
 
@@ -103,19 +103,24 @@ class Vehicle {
   }
 
   move() {
-    if (this.direction === 0) { //coming from west
-      this.xPosition += this.speed;
-      if (this.xPosition > width + 50) {
-        this.xPosition = 0 - 50;
+
+    if (lightArray[0].stop <= 0) {
+      if (this.direction === 0) { //coming from west
+        this.xPosition += this.speed;
+        if (this.xPosition > width + 50) {
+          this.xPosition = 0 - 50;
+        }
+      }
+
+      if (this.direction === 1) { //coming from east
+        this.xPosition += -1 * this.speed;
+        if (this.xPosition < 0 - 50) {
+          this.xPosition = width + 50;
+        }
       }
     }
 
-    if (this.direction === 1) { //coming from east
-      this.xPosition += -1 * this.speed;
-      if (this.xPosition < 0 - 50) {
-        this.xPosition = width + 50;
-      }
-    }
+
   }
 
   speedUp() {
@@ -182,6 +187,7 @@ class light {
     this.redOff = color(50, 0, 0);
     this.redColor = this.redOff;
     this.greenColor = this.greenOn;
+    this.stop = 0;
   }
 
   displayLights() {
@@ -197,13 +203,14 @@ class light {
     fill(this.greenColor);
     circle(width / 2 - width / 16, height / 14, 70);
 
-    if (keyCode === 32) {
+    if (keyCode === 32 && keyIsPressed) {
+
       this.redColor = this.redOn;
       this.greenColor = this.greenOff;
 
-      for (let i = 0; i < 120; i++) {
-        this.speed = 0;
-      }
+
+      this.stop = 120;
     }
+    this.stop--;
   }
 }

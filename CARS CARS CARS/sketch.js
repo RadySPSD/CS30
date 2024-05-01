@@ -1,34 +1,33 @@
-// Project Title
-// Your Name
-// Date
-//
-// Extra for Experts:
-// - describe what you did to take this project "above and beyond"
+// Cars Cars Cars
+// Ahmed Rady
+// 5/1/2024
+// A program that has cars moving in opposite directions. left click adds an eastbound car. 
+//Shift + left click adds a westbound car. Space stops the cars for 120 frames.
+
 //variables
 let eastCars = 20;
 let westCars = 20;
 let speed;
-
 let eastbound = [];
 let westbound = [];
 let lightArray = [];
-//let vehicles = [];
-const NUM_VEHICLES = 1;
 
 //functions
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(800, windowHeight);
   //vehicles.push(new Vehicle());
 
-
+  //pushing a certain amount of westbound cars
   for (let i = 0; i < westCars; i++) {
     westbound.push(new Vehicle(0, 0, 0));
   }
 
+  //pushing a certain amount of eastbound cars
   for (let i = 0; i < eastCars; i++) {
     eastbound.push(new Vehicle(0, 0, 1));
   }
 
+  //spawning in the trafficlights
   for (let i = 0; i < 1; i++) {
     lightArray.push(new light());
   }
@@ -39,12 +38,18 @@ function setup() {
 function draw() {
   background(255);
   drawRoad();
+
+  //westbound cars functions
   for (let w of westbound) {
     w.action();
   }
+
+  //eastbound cars functions
   for (let e of eastbound) {
     e.action();
   }
+
+  //traffic lights cars
   for (let q of lightArray) {
     q.displayLights();
   }
@@ -136,7 +141,6 @@ class Vehicle {
     if (round(random(0, 101)) === 1) {
       if (this.speed > 1) {
         this.speed -= 1;
-        //console.log("slowu");
       }
     }
   }
@@ -144,7 +148,6 @@ class Vehicle {
   changeColor() {
     if (round(random(0, 101)) === 1) {
       this.carColor = color(random(255), random(255), random(255));
-      //console.log("color");
     }
   }
 
@@ -212,5 +215,10 @@ class light {
       this.stop = 120;
     }
     this.stop--;
+
+    if (this.stop === 0){
+      this.redColor = this.redOff;
+      this.greenColor = this.greenOn;
+    }
   }
 }

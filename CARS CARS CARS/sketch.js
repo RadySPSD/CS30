@@ -11,23 +11,28 @@ let speed;
 let eastbound = [];
 let westbound = [];
 let lightArray = [];
+<<<<<<< HEAD
 
 //const NUM_VEHICLES = 1;
+=======
+>>>>>>> cb5ae1c9e0d31232eb1f221ad1c037cb0140b9f2
 
 //functions
 function setup() {
   createCanvas(800, windowHeight);
   //vehicles.push(new Vehicle());
 
-
+  //pushing a certain amount of westbound cars
   for (let i = 0; i < westCars; i++) {
     westbound.push(new Vehicle(0, 0, 0));
   }
 
+  //pushing a certain amount of eastbound cars
   for (let i = 0; i < eastCars; i++) {
     eastbound.push(new Vehicle(0, 0, 1));
   }
 
+  //spawning in the trafficlights
   for (let i = 0; i < 1; i++) {
     lightArray.push(new light());
   }
@@ -38,12 +43,18 @@ function setup() {
 function draw() {
   background(255);
   drawRoad();
+
+  //westbound cars functions
   for (let w of westbound) {
     w.action();
   }
+
+  //eastbound cars functions
   for (let e of eastbound) {
     e.action();
   }
+
+  //traffic lights cars
   for (let q of lightArray) {
     q.displayLights();
   }

@@ -11,11 +11,7 @@ let speed;
 let eastbound = [];
 let westbound = [];
 let lightArray = [];
-<<<<<<< HEAD
 
-//const NUM_VEHICLES = 1;
-=======
->>>>>>> cb5ae1c9e0d31232eb1f221ad1c037cb0140b9f2
 
 //functions
 function setup() {
@@ -54,12 +50,13 @@ function draw() {
     e.action();
   }
 
-  //traffic lights cars
+  //traffic lights spawn
   for (let q of lightArray) {
     q.displayLights();
   }
 }
 
+// adds cars to westbound and/or eastbound
 function mousePressed() {
   if (mouseButton === LEFT && keyCode === SHIFT && keyIsPressed) {
     westbound.push(new Vehicle(0, 0, 0));
@@ -84,21 +81,35 @@ function drawRoad() {
   }
 }
 
-
 //the Vehicle class
 class Vehicle {
   constructor(xPosition, yPosition, direction) {
+
+    //car or truck
     this.type = round(random(0, 1));
+
+    //color
     this.carColor = color(random(255), random(255), random(255));
+    
+    //x position
     this.xPosition = xPosition;
+
+    //y position
     this.yPosition = yPosition;
+
+    //westbound or eastbound
     this.direction = direction;
+
+    //setting the speed
     this.speed = round(random(0, 10));
+
+    //spawning the cars
     this.spawn();
   }
 
   //class methods
 
+  //spawning the car in a random position
   spawn() {
     this.yPosition = 0;
     if (this.direction === 0) { //coming from west
@@ -112,6 +123,7 @@ class Vehicle {
     }
   }
 
+  // moving the car
   move() {
 
     if (lightArray[0].stop <= 0) {
@@ -133,6 +145,7 @@ class Vehicle {
 
   }
 
+  //chance of speeding up
   speedUp() {
     if (round(random(0, 101)) === 1) {
       if (this.speed < 15) {
@@ -142,6 +155,7 @@ class Vehicle {
     }
   }
 
+  //chance of slowing down
   speedDown() {
     if (round(random(0, 101)) === 1) {
       if (this.speed > 1) {
@@ -150,12 +164,14 @@ class Vehicle {
     }
   }
 
+  //chance of changing color
   changeColor() {
     if (round(random(0, 101)) === 1) {
       this.carColor = color(random(255), random(255), random(255));
     }
   }
 
+  //all the past functions in one
   action() {
     this.display();
     this.move();
@@ -164,7 +180,7 @@ class Vehicle {
     this.changeColor();
   }
 
-  //display
+  //displaying the car depending on its type
   display() {
     //drawing the car
     if (this.type === 0) {
@@ -186,20 +202,28 @@ class Vehicle {
   }
 }
 
+
+//traffic light class
 class light {
   constructor(trafficLights) {
     this.trafficLights = trafficLights;
+
+    //light modes
     this.greenOn = color(0, 255, 0);
     this.greenOff = color(0, 50, 0);
     this.redOn = color(255, 0, 0);
     this.redOff = color(50, 0, 0);
     this.redColor = this.redOff;
     this.greenColor = this.greenOn;
+
+    //for stoping the cars
     this.stop = 0;
   }
 
+  //class methods
   displayLights() {
 
+    //drawing the traffic light
     rectMode(CENTER);
 
     fill(255, 210, 0);
@@ -211,6 +235,7 @@ class light {
     fill(this.greenColor);
     circle(width / 2 - width / 16, height / 14, 70);
 
+    //if space car is pressed, light turns red and the cars stop
     if (keyCode === 32 && keyIsPressed) {
 
       this.redColor = this.redOn;
@@ -219,8 +244,11 @@ class light {
 
       this.stop = 120;
     }
+
+    //stoping the cars for 120 frames
     this.stop--;
 
+    //if the 120 frames are done, light turns green
     if (this.stop === 0){
       this.redColor = this.redOff;
       this.greenColor = this.greenOn;

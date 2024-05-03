@@ -90,7 +90,7 @@ class Vehicle {
 
     //color
     this.carColor = color(random(255), random(255), random(255));
-    
+
     //x position
     this.xPosition = xPosition;
 
@@ -101,7 +101,7 @@ class Vehicle {
     this.direction = direction;
 
     //setting the speed
-    this.speed = round(random(0, 10));
+    this.speed = round(random(1, 10));
 
     //spawning the cars
     this.spawn();
@@ -249,7 +249,7 @@ class light {
     this.stop--;
 
     //if the 120 frames are done, light turns green
-    if (this.stop === 0){
+    if (this.stop === 0) {
       this.redColor = this.redOff;
       this.greenColor = this.greenOn;
     }

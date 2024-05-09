@@ -33,11 +33,11 @@ function mousePressed(){
   }  
   // cross-shaped pattern flips on a mouseclick. Boundary conditions are checked within the flip function to ensure in-bounds access for array
   else if (mouseButton === LEFT) {
-  flip(currentCol, currentRow);
-  flip(currentCol-1, currentRow);
-  flip(currentCol+1, currentRow);
-  flip(currentCol, currentRow-1);
-  flip(currentCol, currentRow+1);
+    flip(currentCol, currentRow);
+    flip(currentCol-1, currentRow);
+    flip(currentCol+1, currentRow);
+    flip(currentCol, currentRow-1);
+    flip(currentCol, currentRow+1);
   }
 
 
@@ -74,12 +74,16 @@ function winCondition(){
   let solved = 0;
   for (let x = 0; x < NUM_COLS ; x++){
     for (let y = 0; y < NUM_ROWS; y++){
-      if (gridData[currentRow + x][currentCol + y] === 0){
+      if (gridData[y][x] === 0){
         solved ++;
+      }
+      if (gridData[y][x] === 255){
+        solved --;
       }
     }
   }
-  if (solved === 20){
-    console.log("you win");
+  if (solved === 20 || solved ===  -20){
+    fill(255,0,0);
+    text("YOU WIN!",width/2,height/2,1000,500);
   }
 }

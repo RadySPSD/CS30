@@ -22,17 +22,25 @@ function draw() {
   background(220);
   determineActiveSquare();   //figure out which tile the mouse cursor is over
   drawGrid();                //render the current game board to the screen (and the overlay)
+  winCondition();
 }
 
 
 
 function mousePressed(){
+  if (mouseButton === LEFT && keyCode === SHIFT && keyIsPressed) {
+    flip(currentCol, currentRow);
+  }  
   // cross-shaped pattern flips on a mouseclick. Boundary conditions are checked within the flip function to ensure in-bounds access for array
+  else if (mouseButton === LEFT) {
   flip(currentCol, currentRow);
   flip(currentCol-1, currentRow);
   flip(currentCol+1, currentRow);
   flip(currentCol, currentRow-1);
   flip(currentCol, currentRow+1);
+  }
+
+
 }
 
 function flip(col, row){
@@ -62,4 +70,16 @@ function drawGrid(){
   }
 }
 
-
+function winCondition(){
+  let solved = 0;
+  for (let x = 0; x < NUM_COLS ; x++){
+    for (let y = 0; y < NUM_ROWS; y++){
+      if (gridData[currentRow + x][currentCol + y] === 0){
+        solved ++;
+      }
+    }
+  }
+  if (solved === 20){
+    console.log("you win");
+  }
+}

@@ -1,13 +1,12 @@
 //Insert your Comment Header here.
 
+
+
 let NUM_ROWS = 4;
 let NUM_COLS = 5;
 let rectWidth, rectHeight;
 let currentRow, currentCol;
-let gridData = [[0,0,0,0,0],
-                [0,0,0,0,0],
-                [0,255,0,0,0],
-                [255,255,255,0,0]];
+let gridData;
 
 
 
@@ -16,6 +15,11 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   rectWidth = width/NUM_COLS;
   rectHeight = height/NUM_ROWS;
+  gridData = [[randomSpawn(),randomSpawn(),randomSpawn(),randomSpawn(),randomSpawn()],
+                [randomSpawn(),randomSpawn(),randomSpawn(),randomSpawn(),randomSpawn()],
+                [randomSpawn(),randomSpawn(),randomSpawn(),randomSpawn(),randomSpawn()],
+                [randomSpawn(),randomSpawn(),randomSpawn(),randomSpawn(),randomSpawn()]];
+
 }
 
 function draw() {
@@ -84,6 +88,13 @@ function winCondition(){
   }
   if (solved === 20 || solved ===  -20){
     fill(255,0,0);
-    text("YOU WIN!",width/2,height/2,1000,500);
+    textSize(35);
+    text("YOU WIN!",width/2,height/2);
   }
+}
+
+function randomSpawn(){
+  let numberChosen = round(random(0,2));
+  if (numberChosen === 0) return 0;
+  else return 255;
 }

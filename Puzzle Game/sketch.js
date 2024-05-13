@@ -15,7 +15,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   rectWidth = width/NUM_COLS;
   rectHeight = height/NUM_ROWS;
-  gridData = [[randomSpawn(),randomSpawn(),randomSpawn(),randomSpawn(),randomSpawn()],
+  gridData = [  [randomSpawn(),randomSpawn(),randomSpawn(),randomSpawn(),randomSpawn()],
                 [randomSpawn(),randomSpawn(),randomSpawn(),randomSpawn(),randomSpawn()],
                 [randomSpawn(),randomSpawn(),randomSpawn(),randomSpawn(),randomSpawn()],
                 [randomSpawn(),randomSpawn(),randomSpawn(),randomSpawn(),randomSpawn()]];
@@ -97,4 +97,9 @@ function randomSpawn(){
   let numberChosen = round(random(0,2));
   if (numberChosen === 0) return 0;
   else return 255;
+}
+
+function highlight(){
+  
+
 }

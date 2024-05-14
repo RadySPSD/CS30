@@ -7,7 +7,7 @@ let NUM_COLS = 5;
 let rectWidth, rectHeight;
 let currentRow, currentCol;
 let gridData;
-
+let state = "cross";
 
 
 function setup() {
@@ -20,6 +20,7 @@ function setup() {
                 [randomSpawn(),randomSpawn(),randomSpawn(),randomSpawn(),randomSpawn()],
                 [randomSpawn(),randomSpawn(),randomSpawn(),randomSpawn(),randomSpawn()]];
 
+
 }
 
 function draw() {
@@ -27,9 +28,38 @@ function draw() {
   determineActiveSquare();   //figure out which tile the mouse cursor is over
   drawGrid();                //render the current game board to the screen (and the overlay)
   winCondition();
+
+
+  
+
+  if (state ==="cross"){
+    highlightGrid(currentCol, currentRow);
+    highlightGrid(currentCol-1, currentRow);
+    highlightGrid(currentCol+1, currentRow);
+    highlightGrid(currentCol, currentRow-1);  
+    highlightGrid(currentCol, currentRow+1);
+  }
+  else{
+    highlightGrid(currentCol, currentRow);
+    highlightGrid(currentCol, currentRow + 1);
+    highlightGrid(currentCol+1, currentRow);
+    highlightGrid(currentCol+1, currentRow+1);
+  }
 }
 
+function keyPressed(){
+  if (keyCode === 32 && keyIsPressed) {
+    if (state === "cross")state = "square";
+    else state = "cross";
+  }
+}
 
+function highlightGrid(col,row){
+
+  fill(144,238,144,120); 
+  rect(col*rectWidth, row*rectHeight, rectWidth, rectHeight);
+
+}
 
 function mousePressed(){
   if (mouseButton === LEFT && keyCode === SHIFT && keyIsPressed) {
@@ -37,11 +67,19 @@ function mousePressed(){
   }  
   // cross-shaped pattern flips on a mouseclick. Boundary conditions are checked within the flip function to ensure in-bounds access for array
   else if (mouseButton === LEFT) {
-    flip(currentCol, currentRow);
-    flip(currentCol-1, currentRow);
-    flip(currentCol+1, currentRow);
-    flip(currentCol, currentRow-1);
-    flip(currentCol, currentRow+1);
+    if (state ==="cross"){
+      flip(currentCol, currentRow);
+      flip(currentCol-1, currentRow);
+      flip(currentCol+1, currentRow);
+      flip(currentCol, currentRow-1);
+      flip(currentCol, currentRow+1);
+    }
+    else{
+      flip(currentCol, currentRow);
+      flip(currentCol+1, currentRow);
+      flip(currentCol, currentRow+1);
+      flip(currentCol+1, currentRow+1);
+    }
   }
 
 
@@ -99,7 +137,3 @@ function randomSpawn(){
   else return 255;
 }
 
-function highlight(){
-  
-
-}

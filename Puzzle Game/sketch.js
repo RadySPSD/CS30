@@ -1,5 +1,12 @@
-//Insert your Comment Header here.
-
+// puzzles
+// Ahmed Rady
+// 5/14/2024
+// A Game where you are required to get all the squares to be black or all the squares to be
+// white. When the mouse cursor is on a square, the highlight shows you the squares that
+// will change, when you left click the outlined squares will change color. You can change
+// the out line shape by pressing the space key. you can switch between to hilights, the
+// square highlight, and the cross highlight. If you are stuck, you can use
+// shift + left click to change eachsquare individiually.
 
 
 let NUM_ROWS = 4;

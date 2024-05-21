@@ -3,16 +3,35 @@
 // 20 may 2024
 // later
 
-let Square;
+let square;
+let whichgame;
 
 //main setup function
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  Square = new mainHub(); 
+  square = new mainHub(); 
+  whichgame = "hub";
 
 }
 
 // draw funcition that keeps on refreshing
 function draw() {
-  Square.display();
+  square.display();
+}
+
+function mousePressed(){
+  if (mouseButton === LEFT){
+
+    if (whichgame ==="hub"){
+      square = new snakeGame();
+      whichgame = "snake";
+    } 
+
+    else{
+      square = new mainHub();
+      whichgame = "hub";
+    }
+  }
+
+
 }

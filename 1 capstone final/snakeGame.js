@@ -1,9 +1,16 @@
 class snakeGame{
   constructor(){
-    this.bgr;
+    this.squareSize = 50;
   }
+
+  //class methods
   display(){
-    fill(255,100,100);
-    rect(windowWidth/2,windowHeight/2,200,200);
+    for (let x = 0; x < windowWidth; x = x + this.squareSize){
+        for (let y = 0; y < windowHeight; y = y + this.squareSize){
+            rectMode  = CENTER;
+            rect(x,y,this.squareSize);
+        }
+    }
+    
   }
 }

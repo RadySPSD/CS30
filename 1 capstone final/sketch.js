@@ -9,8 +9,8 @@ let whichgame;
 //main setup function
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  square = new mainHub(); 
-  whichgame = "hub";
+  square = new snakeGame(); 
+  whichgame = "snake";
 
 }
 

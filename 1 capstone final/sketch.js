@@ -19,19 +19,8 @@ function draw() {
   square.display();
 }
 
-function mousePressed(){
-  if (mouseButton === LEFT){
-
-    if (whichgame ==="hub"){
-      square = new snakeGame();
-      whichgame = "snake";
-    } 
-
-    else{
-      square = new mainHub();
-      whichgame = "hub";
-    }
+function keyPressed(){
+  if (whichgame === "snake"){
+      square.controls();
   }
-
-
 }

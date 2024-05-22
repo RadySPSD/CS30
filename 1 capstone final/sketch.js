@@ -8,15 +8,17 @@ let whichgame;
 
 //main setup function
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(913, 948);
   square = new snakeGame(); 
   whichgame = "snake";
 
+  // square.snakePlayer();
 }
 
 // draw funcition that keeps on refreshing
 function draw() {
   square.display();
+  // square.snakePlayer();
 }
 
 function keyPressed(){

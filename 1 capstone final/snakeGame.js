@@ -3,19 +3,48 @@ class snakeGame{
     this.squareSize = 50;
     this.gridX = 50;
     this.gridY = 50;
-    this.snakeX = 50;
-    this.snakeY = 50;
+    this.snakeX = 400;
+    this.snakeY = 400;
+    this.snakeBody = [];
   }
+  
+
 
   controls(){
     if (keyCode === LEFT_ARROW) {
-      this.snakeX -= 50; 
+      if (this.snakeX > 50){
+        this.snakeX -= 50; 
+      }
     } else if (keyCode === RIGHT_ARROW) {
-      this.snakeX += 50; 
+      if (this.snakeX < 800){
+        this.snakeX += 50; 
+      }  
     } else if (keyCode === UP_ARROW) {
-      this.snakeY -= 50; 
+      if (this.snakeY > 50){
+        this.snakeY -= 50; 
+      } 
     } else if (keyCode === DOWN_ARROW) {
-      this.snakeY += 50; 
+      if (this.snakeY < 800){
+        this.snakeY += 50; 
+      }  
+    }
+
+    if (keyCode === 65) {
+      if (this.snakeX > 50){
+        this.snakeX -= 50; 
+      }
+    } else if (keyCode === 68) {
+      if (this.snakeX < 800){
+        this.snakeX += 50; 
+      }  
+    } else if (keyCode === 87) {
+      if (this.snakeY > 50){
+        this.snakeY -= 50; 
+      } 
+    } else if (keyCode === 83) {
+      if (this.snakeY < 800){
+        this.snakeY += 50; 
+      }  
     }
   }
 
@@ -26,11 +55,17 @@ class snakeGame{
             rectMode  = CENTER;
             noFill();
             rect(this.gridX,this.gridY,this.squareSize);
+
+            if (this.gridX === this.snakeX && this.gridY === this.snakeY){
+              fill(0,100,0);
+              rect(this.gridX,this.gridY,this.squareSize);
+            }
+
+            else{
+              fill(255,255,255);
+              rect(this.gridX,this.gridY,this.squareSize);
+            }
         }
     }
-  
-  fill(0,100,0);
-  rect(this.snakeX,this.snakeY,this.squareSize);
   }
-
 }

@@ -9,20 +9,23 @@ let whichgame;
 //main setup function
 function setup() {
   createCanvas(913, 948);
-  square = new snakeGame(); 
+  square = new snakeGame();
   whichgame = "snake";
 
-  // square.snakePlayer();
+  
 }
 
 // draw funcition that keeps on refreshing
 function draw() {
   square.display();
-  // square.snakePlayer();
+  square.moveSnake();    
+  square.increaseScore();
 }
 
-function keyPressed(){
-  if (whichgame === "snake"){
-      square.controls();
+function keyPressed() {
+  if (whichgame === "snake") {
+    square.controls();
+
+    
   }
 }

@@ -6,8 +6,8 @@ class snakeGame {
     this.snakeX = 400;
     this.snakeY = 400;
     this.direction = "right";
-    this.foodX = this.foodX
-    this.foodY = this.foodY
+    this.foodX = this.foodX = (Math.random(1,16));
+    this.foodY = this.foodY = 50 *(Math.random(1,16));
     this.foodThere = false;
     this.snakeBody = [
       {x:this.squareSize * 3,y:0},
@@ -21,23 +21,6 @@ class snakeGame {
 
 
   controls() {
-    // if (keyCode === LEFT_ARROW) {
-    //   if (this.snakeX > 50) {
-    //     this.snakeX -= 50;
-    //   }
-    // } else if (keyCode === RIGHT_ARROW) {
-    //   if (this.snakeX < 800) {
-    //     this.snakeX += 50;
-    //   }
-    // } else if (keyCode === UP_ARROW) {
-    //   if (this.snakeY > 50) {
-    //     this.snakeY -= 50;
-    //   }
-    // } else if (keyCode === DOWN_ARROW) {
-    //   if (this.snakeY < 800) {
-    //     this.snakeY += 50;
-    //   }
-    // }
 
     if (keyCode === 65) {  //left
       if (this.snakeX > 50) {
@@ -71,15 +54,6 @@ class snakeGame {
     }
   }
 
-  foodSpwan(){
-    if (this.foodThere === false){
-      this.foodX = 50 *(Math.round(Math.random(1,16)));
-      this.foodY = 50 *(Math.round(Math.random(1,16)));
-
-      fill(100,100,0);
-      rect(this.foodX + 50 ,this.foodY + 50,this.squareSize);
-    }
-  }
 
   //class methods
   display() {
@@ -92,6 +66,8 @@ class snakeGame {
         if (this.gridX === this.snakeX && this.gridY === this.snakeY) {
           fill(200,0 , 0);
           rect(this.snakeX, this.snakeY, this.squareSize);
+          console.log(this.foodX)
+          //console.log(this.foodY)
           
 
           if (this.direction === "right"){
@@ -107,13 +83,18 @@ class snakeGame {
           }
         }
 
+        else if (this.gridX === this.foodX && this.gridY === this.foodY){
+          fill(0,0,255);
+          rect(this.foodX,this.foodY,this.squareSize);
+          
+        }
+
         else {
           fill(255, 255, 255);
           rect(this.gridX, this.gridY, this.squareSize);
         }
 
-        //food
-        this.foodSpwan()
+        
       }
     }
   }

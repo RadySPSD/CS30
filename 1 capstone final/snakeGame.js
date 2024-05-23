@@ -5,7 +5,17 @@ class snakeGame {
     this.gridY = 50;
     this.snakeX = 400;
     this.snakeY = 400;
-    this.direction = "east";
+    this.direction = "right";
+    this.foodX = this.foodX
+    this.foodY = this.foodY
+    this.foodThere = false;
+    this.snakeBody = [
+      {x:this.squareSize * 3,y:0},
+      {x:this.squareSize * 2,y:0},
+      {x:this.squareSize * 1,y:0},
+      {x:this.squareSize,y:0},
+      {x:0,y:0}
+    ];
   }
 
 
@@ -45,7 +55,7 @@ class snakeGame {
         }
       }
     } else if (keyCode === 87) { //up
-      if (this.snakeY > 40) {
+      if (this.snakeY > 50) {
         if (this.direction!== "down"){
           this.snakeY -= 50;
           this.direction = "up";
@@ -61,7 +71,15 @@ class snakeGame {
     }
   }
 
+  foodSpwan(){
+    if (this.foodThere === false){
+      this.foodX = 50 *(Math.round(Math.random(1,16)));
+      this.foodY = 50 *(Math.round(Math.random(1,16)));
 
+      fill(100,100,0);
+      rect(this.foodX + 50 ,this.foodY + 50,this.squareSize);
+    }
+  }
 
   //class methods
   display() {
@@ -72,30 +90,30 @@ class snakeGame {
         rect(this.gridX, this.gridY, this.squareSize);
 
         if (this.gridX === this.snakeX && this.gridY === this.snakeY) {
-          fill(0, 100, 0);
-          rect(this.gridX, this.gridY, this.squareSize);
+          fill(200,0 , 0);
+          rect(this.snakeX, this.snakeY, this.squareSize);
+          
 
-          for (let i = 0; i < 5; i++) {
-            if (this.direction === "right") {
-              rect(this.gridX - (50 * i), this.gridY, this.squareSize);
-            }
-            if (this.direction === "left") {
-              rect(this.gridX - (50 * i), this.gridY, this.squareSize);
-            }
-            if (this.direction === "up") {
-              rect(this.gridX, this.gridY - (50 * i), this.squareSize);
-            }
-            if (this.direction === "down") {
-              rect(this.gridX, this.gridY - (50 * i), this.squareSize);
-            }
+          if (this.direction === "right"){
+            fill(0,200,0);
+            rect(this.snakeX - 50, this.snakeY, this.squareSize);
+            rect(this.snakeX - 100, this.snakeY, this.squareSize);
           }
 
+          if (this.direction === "down"){
+            fill(0,200,0);
+            rect(this.snakeX, this.snakeY - 50, this.squareSize);
+            rect(this.snakeX - 50, this.snakeY - 50 , this.squareSize);
+          }
         }
 
         else {
           fill(255, 255, 255);
           rect(this.gridX, this.gridY, this.squareSize);
         }
+
+        //food
+        this.foodSpwan()
       }
     }
   }

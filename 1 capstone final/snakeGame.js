@@ -8,18 +8,16 @@ class snakeGame {
     this.direction = "right";
     this.foodX = 50 * Math.floor(random(1, 16));
     this.foodY = 50 * Math.floor(random(1, 16));
-    this.foodThere = false;
     this.score = 0;
-    this.snakeBody = [
-      { x: this.squareSize * 3, y: 0 },
-      { x: this.squareSize * 2, y: 0 },
-      { x: this.squareSize * 1, y: 0 },
-      { x: this.squareSize, y: 0 },
-      { x: 0, y: 0 }
-    ];
     this.keepMoving = this.squareSize;
+    this.otherSegments = [];
   }
 
+  spawningSegments() {
+    for (let i = 0; i < 1; i ++){
+      this.otherSegments.push(new snakeSegment(this.snakeX,this.snakeY));
+    }
+  }
 
 
   controls() {
@@ -27,7 +25,6 @@ class snakeGame {
     if (keyCode === 65) {  //left
       if (this.snakeX > 50) {
         if (this.direction !== "right") {
-          this.snakeX -= 50;
           this.direction = "left";
         }
 
@@ -35,21 +32,18 @@ class snakeGame {
     } else if (keyCode === 68) { //right
       if (this.snakeX < 800) {
         if (this.direction !== "left") {
-          this.snakeX += 50;
           this.direction = "right";
         }
       }
     } else if (keyCode === 87) { //up
       if (this.snakeY > 50) {
         if (this.direction !== "down") {
-          this.snakeY -= 50;
           this.direction = "up";
         }
       }
     } else if (keyCode === 83) {  //down
       if (this.snakeY < 800) {
         if (this.direction !== "up") {
-          this.snakeY += 50;
           this.direction = "down";
         }
       }
@@ -65,6 +59,7 @@ class snakeGame {
     }
   }
 
+  //snake keeps moving
   moveSnake() {
     if (frameCount % 30 === 0) {
       if (this.snakeX < 800) {
@@ -72,10 +67,22 @@ class snakeGame {
           this.snakeX += this.squareSize;
         }
       }
-
+      if (this.snakeX > 50) {
+        if (this.direction === "left") {
+          this.snakeX -= this.squareSize;
+        }
+      }
+      if (this.snakeY < 800) {
+        if (this.direction === "down") {
+          this.snakeY += this.squareSize;
+        }
+      }
+      if (this.snakeY > 50) {
+        if (this.direction === "up") {
+          this.snakeY -= this.squareSize;
+        }
+      }
     }
-
-
   }
 
   //class methods
@@ -90,20 +97,11 @@ class snakeGame {
           fill(200, 0, 0);
           rect(this.snakeX, this.snakeY, this.squareSize);
 
-          //snake keeps moving
-
-
-          // if (this.direction === "right"){
-          //   fill(0,200,0);
-          //   rect(this.snakeX - 50, this.snakeY, this.squareSize);
-          //   rect(this.snakeX - 100, this.snakeY, this.squareSize);
-          // }
-
-          // if (this.direction === "down"){
-          //   fill(0,200,0);
-          //   rect(this.snakeX, this.snakeY - 50, this.squareSize);
-          //   rect(this.snakeX - 50, this.snakeY - 50 , this.squareSize);
-          // }
+          //segments
+          this.spawningSegments();
+          for (let q of this.otherSegments){
+            q.display();          
+          }
         }
 
         else if (this.gridX === this.foodX && this.gridY === this.foodY) {
@@ -125,7 +123,14 @@ class snakeGame {
 }
 
 class snakeSegment {
-  constructor() {
-    this.snakeLength
+  constructor(segmentX,segmentY) {
+    this.segmentX = segmentX;
+    this.segmentY = segmentY;
+    this.squareSize = 50;
+  }
+
+  display(){
+    fill(0,255,0)
+    rect(this.segmentX + this.squareSize,this.segmentY,this.squareSize);
   }
 }

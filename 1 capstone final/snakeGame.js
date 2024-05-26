@@ -12,6 +12,7 @@ class snakeGame {
     this.moveSpeed = 50;
     this.keepMoving = this.moveSpeed;
     this.otherSegments = [];
+    this.losing = false;
   }
 
   spawningSegments() {
@@ -63,55 +64,74 @@ class snakeGame {
 
   //snake keeps moving
   moveSnake() {
-    if (frameCount % 10 === 0) {
-      this.updateTail();
-      if (this.snakeX < 800) {
+    if (frameCount % 20 === 0) {
+      if (this.losing === false){
+              this.updateTail();
+      if (this.snakeX <= 800) {
         if (this.direction === "right") {
           this.snakeX += this.moveSpeed;
         }
       }
-      if (this.snakeX > 50) {
+      else {
+        this.losing = true;        
+      }
+      if (this.snakeX >= 50) {
         if (this.direction === "left") {
           this.snakeX -= this.moveSpeed;
         }
       }
-
-      if (this.snakeY < 800) {
+      else {
+        this.losing = true;        
+      }
+      if (this.snakeY <= 800) {
         if (this.direction === "down") {
           this.snakeY += this.moveSpeed;
         }
       }
+      else {
+        this.losing = true;        
+      }
 
-
-      if (this.snakeY > 50) {
+      if (this.snakeY >= 50) {
         if (this.direction === "up") {
           this.snakeY -= this.moveSpeed;
         }
       }
-      else this.moveSpeed =  0;
+      else {
+        this.losing = true;        
+      }
+
+      this.endingGame();
+    }
+      }
+
+  }
+
+  endingGame(){
+    if (this.losing === true){
+      
+      console.log("game over")
     }
   }
 
-  collisionChecking(){
-    if (  this.snakeX === 900 && this.direction === "right"
-       || this.snakeX === 50 && this.direction === "left"   
-       || this.snakeY === 800 && this.direction === "down"   
-       || this.snakeY === 50 && this.direction === "up"){
-      this.moveSpeed =  0;
-    }
-  }
+
 
   updateTail(){
     
-    for(let i=  this.otherSegments.length  -1; i > 0; i --){
+    for(let i =  this.otherSegments.length  -1; i > 0; i --){
       this.otherSegments[i].segmentX = this.otherSegments[i-1].segmentX;
       this.otherSegments[i].segmentY = this.otherSegments[i-1].segmentY;
+     
+      if (this.snakeX === this.otherSegments[i].segmentX && this.snakeY === this.otherSegments[i].segmentY){
+      this.losing = true;
+      this.endingGame();
+      }
     }
     if (this.otherSegments.length > 0){
       this.otherSegments[0].segmentX = this.snakeX;
       this.otherSegments[0].segmentY = this.snakeY;
-      //print(this.snakeX,this.snakeY,this.otherSegments[0].segmentX,this.otherSegments[0].segmentY);
     }
+
 
   }
   //class methods
@@ -143,6 +163,14 @@ class snakeGame {
         else {
           fill(255, 255, 255);
           rect(this.gridX, this.gridY, this.squareSize);
+        }
+
+        if (this.losing === true){
+          fill(0,255,0)
+          rect(windowWidth/2-205, windowHeight/2-65,430,100)
+          fill(255,0,0)
+          textSize(100)
+          text("game over",windowWidth/2-200, windowHeight/2)
         }
       }
     }

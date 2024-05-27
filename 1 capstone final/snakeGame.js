@@ -15,6 +15,40 @@ class snakeGame {
     this.losing = false;
   }
 
+  restartButton(){
+    
+    fill(150);
+    rect(windowWidth/2 - 100,850,200,50);
+    textSize(60);
+    fill(0);
+    text("restart",windowWidth/2 - 80,890);
+
+    if(mouseX >= windowWidth/2 - 100 && mouseX <= windowWidth/2 + 100 && mouseY >= 850 && mouseY <= 900 && mouseIsPressed === true){
+      this.losing = false;
+      this.snakeX = 400;
+      this.snakeY = 400;
+      this.direction = "right"
+      this.moveSpeed = 50;
+      this.foodX = 50 * Math.floor(random(1, 16));
+      this.foodY = 50 * Math.floor(random(1, 16));
+      this.score = 0;
+      this.otherSegments = [];
+      print('wow');
+    }
+  }
+
+  MenuButton(){
+    fill(150);
+    rect(50,850,200,50);
+    textSize(30)
+    fill(0)
+    text("Back To Menu",60,890)
+
+    if(mouseX >= 50 && mouseX <= 250 && mouseY >= 850 && mouseY <= 900 && mouseIsPressed === true){
+      print('menu')
+    }
+  }
+
   spawningSegments() {
     
       this.otherSegments.push(new snakeSegment(this.snakeX,this.snakeY));
@@ -175,8 +209,9 @@ class snakeGame {
       }
     }
     for (let q of this.otherSegments){
-      q.display();          
+      q.display();
     }
+    //this.restartButton();
   }
 }
 

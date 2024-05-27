@@ -4,47 +4,50 @@
 // later
 
 let square;
-let whichgame;
+let whichgame = "menu";
+let playerLocation = "menu";
 
 //main setup function
 function setup() {
   createCanvas(900, 950);
-  playSnake();
-  //whichgame = "snake";
 
-  if (whichgame === "snake"){
+  if (whichgame === "snake") {
     square = new snakeGame();
   }
-  
+
 }
 
 // draw funcition that keeps on refreshing
 function draw() {
-  playSnake();
 
-  if (whichgame === "snake"){
+  //background(220);
+  if (whichgame === "snake") {
     square.display();
-    square.moveSnake();    
+    square.moveSnake();
     square.increaseScore();
   }
 
-  
+
 }
 
-function playSnake(){
-    //snake
-    fill(150);
-    rect(windowWidth/2 - 100,windowHeight/2 - 25,200,50);
-    textSize(50);
-    fill(0);
-    text("Snake",windowWidth/2 - 60,windowHeight/2 - 25,890);
-    if(mouseX >= windowWidth/2 - 100 && mouseX <= windowWidth/2 + 100 && 
-      mouseY >= windowHeight / 2 - 25 && mouseY <= windowHeight / 2 + 25 && 
-      mouseIsPressed === true){
-      whichgame = "snake";
-      print("snake");
+function playSnake() {
+
+  //snake
+  fill(150);
+  rect(windowWidth / 2 - 100, windowHeight / 2 - 25, 200, 50);
+  textSize(50);
+  fill(0);
+  text("Snake", windowWidth / 2 - 60, windowHeight / 2 - 25, 890);
+  if (mouseX >= windowWidth / 2 - 100 && mouseX <= windowWidth / 2 + 100 &&
+    mouseY >= windowHeight / 2 - 25 && mouseY <= windowHeight / 2 + 25 &&
+    mouseIsPressed === true) {
+    whichgame = "snake";
+    print("snake");
+    if (whichgame === "snake") {
+      square = new snakeGame();
     }
   }
+}
 
 function keyPressed() {
   if (whichgame === "snake") {
@@ -52,10 +55,30 @@ function keyPressed() {
   }
 }
 
-function mousePressed(){
-  if (whichgame === "snake"){
-    square.restartButton();
-    square.MenuButton();   
+function mousePressed() {
+  if (whichgame === "menu"){
+    playSnake();
+    whichgame === "snake";
   }
- 
+  if (whichgame === "snake") {
+    square.restartButton();
+    menuButton();
+  }
+  
+
+}
+
+function menuButton(){
+  fill(150);
+  rect(50, 850, 200, 50);
+  textSize(30);
+  fill(0);
+  text("Back To Menu", 60, 890);
+
+  if (mouseX >= 50 && mouseX <= 250 && mouseY >= 850 && mouseY <= 900 && mouseIsPressed === true) {
+    print('menu');
+    whichgame = "menu";
+    background(255);
+    playSnake();
+  }
 }

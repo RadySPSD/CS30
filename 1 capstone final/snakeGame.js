@@ -27,7 +27,7 @@ class snakeGame {
       this.losing = false;
       this.snakeX = 400;
       this.snakeY = 400;
-      this.direction = "right"
+      this.direction = "right";
       this.moveSpeed = 50;
       this.foodX = 50 * Math.floor(random(1, 16));
       this.foodY = 50 * Math.floor(random(1, 16));
@@ -40,12 +40,12 @@ class snakeGame {
   MenuButton(){
     fill(150);
     rect(50,850,200,50);
-    textSize(30)
-    fill(0)
-    text("Back To Menu",60,890)
+    textSize(30);
+    fill(0);
+    text("Back To Menu",60,890);
 
     if(mouseX >= 50 && mouseX <= 250 && mouseY >= 850 && mouseY <= 900 && mouseIsPressed === true){
-      print('menu')
+      print('menu');
     }
   }
 
@@ -143,8 +143,7 @@ class snakeGame {
 
   endingGame(){
     if (this.losing === true){
-      
-      console.log("game over")
+      console.log("game over");
     }
   }
 

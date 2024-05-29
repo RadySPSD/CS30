@@ -126,12 +126,8 @@ class snakeGame {
         else if (this.direction === "up") {
           this.snakeY -= this.moveSpeed;
         }
-
-
-
       }
     }
-
   }
 
 

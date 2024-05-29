@@ -12,12 +12,6 @@ let playerLocation = "menu";
 function setup() {
   createCanvas(900, 950);
 
-<<<<<<< HEAD
-=======
-  if (whichgame === "menu") {
-    square = new mainHub();
-  }
->>>>>>> 2f6927931290675d51bd6f7b17aad966b87d3690
 
   if (whichgame === "snake") {
     square = new snakeGame();
@@ -38,17 +32,10 @@ function draw() {
     square.increaseScore();
   }
 
-<<<<<<< HEAD
   if (whichgame === "menu") {
     square = new mainHub();
   }
 }
-=======
-
-}
-
-
->>>>>>> 2f6927931290675d51bd6f7b17aad966b87d3690
 
 
 
@@ -60,10 +47,6 @@ function keyPressed() {
 
 function mousePressed() {
   if (whichgame === "menu"){
-<<<<<<< HEAD
-=======
-    //playSnake()
->>>>>>> 2f6927931290675d51bd6f7b17aad966b87d3690
     square.playSnake();
     //square.playFlappyBird();
     whichgame === "snake";
@@ -88,10 +71,5 @@ function menuButton(){
     whichgame = "menu";
     background(255);
     square.playSnake();
-<<<<<<< HEAD
-=======
-    
-
->>>>>>> 2f6927931290675d51bd6f7b17aad966b87d3690
   }
 }

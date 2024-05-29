@@ -98,7 +98,7 @@ class snakeGame {
 
   //snake keeps moving
   moveSnake() {
-    print(this.losing);
+    //print(this.losing);
     if (frameCount % 20 === 0) {
       if (this.losing === false) {
         this.updateTail();
@@ -151,13 +151,10 @@ class snakeGame {
           this.losing = true;
         }
       }
-
+      
       if (this.otherSegments.length > 0) {
         this.otherSegments[0].segmentX = this.snakeX;
         this.otherSegments[0].segmentY = this.snakeY;
-      }
-      if (this.snakeX === this.otherSegments[i].segmentX && this.snakeY === this.otherSegments[i].segmentY) {
-        this.losing = true;
       }
     }
 

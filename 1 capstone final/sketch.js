@@ -12,10 +12,17 @@ let playerLocation = "menu";
 function setup() {
   createCanvas(900, 950);
 
+  if (whichgame === "menu") {
+    square = new mainHub();
+  }
+
   if (whichgame === "snake") {
     square = new snakeGame();
   }
 
+  if (whichgame === "flappy bird") {
+    square = new snakeGame();
+  }
 }
 
 // draw funcition that keeps on refreshing
@@ -31,24 +38,7 @@ function draw() {
 
 }
 
-function playSnake() {
 
-  //snake
-  fill(150);
-  rect(windowWidth / 2 - 100, windowHeight / 2 - 25, 200, 50);
-  textSize(50);
-  fill(0);
-  text("Snake", windowWidth / 2 - 60, windowHeight / 2 - 25, 890);
-  if (mouseX >= windowWidth / 2 - 100 && mouseX <= windowWidth / 2 + 100 &&
-    mouseY >= windowHeight / 2 - 25 && mouseY <= windowHeight / 2 + 25 &&
-    mouseIsPressed === true) {
-    whichgame = "snake";
-    print("snake");
-    if (whichgame === "snake") {
-      square = new snakeGame();
-    }
-  }
-}
 
 function keyPressed() {
   if (whichgame === "snake") {
@@ -58,7 +48,9 @@ function keyPressed() {
 
 function mousePressed() {
   if (whichgame === "menu"){
-    playSnake();
+    //playSnake()
+    square.playSnake();
+    //square.playFlappyBird();
     whichgame === "snake";
   }
   if (whichgame === "snake") {
@@ -80,6 +72,8 @@ function menuButton(){
     print('menu');
     whichgame = "menu";
     background(255);
-    playSnake();
+    square.playSnake();
+    
+
   }
 }

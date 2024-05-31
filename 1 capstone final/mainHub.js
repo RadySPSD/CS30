@@ -34,6 +34,7 @@ class mainHub {
     if (mouseX >= windowWidth / 2 - 100 && mouseX <= windowWidth / 2 + 100 &&
       mouseY >= windowHeight / 2 + 50 && mouseY <= windowHeight / 2 + 100 &&
       mouseIsPressed === true) {
+      clear();
       whichgame = "flappy bird";
       print("Flappy bird");
       square = new flappyBird();

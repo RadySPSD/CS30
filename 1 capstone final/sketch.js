@@ -15,23 +15,13 @@ let whichgame = "menu";
 function setup() {
   createCanvas(900, 950);
 
-  //tells that you are in flappy bird
-  if (whichgame === "flappy bird") {
-    square = new flappyBird();
-    square.setUp();
-  }
-
-  //tells that you are in snake
-  if (whichgame === "snake") {
-    square = new snakeGame();
-  }
-
 }
 
 // draw funcition that keeps on refreshing
 function draw() {
 
   if (whichgame === "flappy bird") {
+    background(255);
     square.display();
   }
 
@@ -47,30 +37,32 @@ function draw() {
   }
 }
 
-
-
 function keyPressed() {
   if (whichgame === "snake") {
+    square.controls();
+  }
+  if (whichgame === "flappy bird") {
     square.controls();
   }
 }
 
 function mousePressed() {
-  if (whichgame === "menu"){
+  if (whichgame === "menu") {
+    clear();
     square.playSnake();
     square.playFlappyBird();
   }
-   if (whichgame === "snake") {
-     square.restartButton();
-     menuButton();
-   }
-  
-   if (whichgame === "flappy bird"){
-     menuButton();
-   }
+  if (whichgame === "snake") {
+    square.restartButton();
+    menuButton();
+  }
+
+  if (whichgame === "flappy bird") {
+    menuButton();
+  }
 }
 
-function menuButton(){
+function menuButton() {
   fill(150);
   rect(50, 850, 200, 50);
   textSize(30);
@@ -79,9 +71,8 @@ function menuButton(){
 
   if (mouseX >= 50 && mouseX <= 250 && mouseY >= 850 && mouseY <= 900 && mouseIsPressed === true) {
     whichgame = "menu";
-    background(255);
+    clear();
     square.playSnake();
     square.playFlappyBird();
-    
   }
 }

@@ -12,21 +12,40 @@ class flappyBird {
     this.obstacles.collider = 'k';
     this.obstacles.h = 300;
     this.obstacles.w = 50;
-    this.obstacles.color = "green"
+    this.obstacles.color = "green";
+    world.gravity.y  = 5;
   }
 
   display() {
-    clear();
-    background(255);
-    world.step();
+
     
+    world.step();
+    camera.x= this.bird.x + 100;
     fill(100, 255, 100);
-    rect(windowWidth / 2, windowHeight / 2, 200, 200);
+
+    if  (this.bird.y > height - 50){
+      this.bird.y = height/2;
+      this.bird.x = 100;
+      this.bird.vel.x = 0;
+      this.bird.vel.y = 0;
+    }
+
+    else if (this.bird.y < 50){
+      this.bird.y = height/2;
+      this.bird.x = 100;
+      this.bird.vel.x = 0;
+      this.bird.vel.y = 0;
+    }
+  }
+  controls(){
+    if (kb.presses('space')){
+      this.bird.vel.y -=5;
+    }
+
+
   }
 
-  setUp(){
-    world.autoStep = false;
-    world.gravity.y = 5;
-    controls();
+  bounds(){
+    
   }
 }

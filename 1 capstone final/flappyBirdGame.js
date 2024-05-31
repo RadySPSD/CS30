@@ -4,8 +4,7 @@ class flappyBird {
     this.score = 0;
     
 
-    world.autoStep = false;
-    world.gravity.y = 5;
+
     
     this.bird = new Sprite(50, windowHeight / 2, 20, "d");
 
@@ -19,9 +18,15 @@ class flappyBird {
   display() {
     clear();
     background(255);
-    controls();world.step()
-    fill(100, 255, 100);
+    world.step();
     
+    fill(100, 255, 100);
     rect(windowWidth / 2, windowHeight / 2, 200, 200);
+  }
+
+  setUp(){
+    world.autoStep = false;
+    world.gravity.y = 5;
+    controls();
   }
 }

@@ -12,6 +12,9 @@ let playerLocation = "menu";
 function setup() {
   createCanvas(900, 950);
 
+  if (whichgame === "flappy bird") {
+    square = new flappyBird();
+  }
 
   if (whichgame === "snake") {
     square = new snakeGame();
@@ -24,6 +27,11 @@ function setup() {
 
 // draw funcition that keeps on refreshing
 function draw() {
+
+  if (whichgame === "flappy bird") {
+    square.display();
+    print('flap')
+  }
 
   //background(220);
   if (whichgame === "snake") {
@@ -48,13 +56,13 @@ function keyPressed() {
 function mousePressed() {
   if (whichgame === "menu"){
     square.playSnake();
-    //square.playFlappyBird();
-    whichgame === "snake";
+    square.playFlappyBird();
+    //whichgame === "snake";
   }
-  if (whichgame === "snake") {
-    square.restartButton();
-    menuButton();
-  }
+   if (whichgame === "snake") {
+     square.restartButton();
+     menuButton();
+   }
   
 
 }
@@ -71,5 +79,6 @@ function menuButton(){
     whichgame = "menu";
     background(255);
     square.playSnake();
+    square.playFlappyBird();
   }
 }

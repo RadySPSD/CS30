@@ -4,25 +4,28 @@
 // 20 may 2024
 // later
 
+//variables
+
+//variable that selects the class
 let square;
+//variable that tells where you are in the program
 let whichgame = "menu";
-let playerLocation = "menu";
 
 //main setup function
 function setup() {
   createCanvas(900, 950);
 
+  //tells that you are in flappy bird
   if (whichgame === "flappy bird") {
     square = new flappyBird();
+    square.setUp();
   }
 
+  //tells that you are in snake
   if (whichgame === "snake") {
     square = new snakeGame();
   }
 
-  if (whichgame === "flappy bird") {
-    square = new snakeGame();
-  }
 }
 
 // draw funcition that keeps on refreshing
@@ -30,7 +33,6 @@ function draw() {
 
   if (whichgame === "flappy bird") {
     square.display();
-    print('flap')
   }
 
   //background(220);
@@ -57,14 +59,15 @@ function mousePressed() {
   if (whichgame === "menu"){
     square.playSnake();
     square.playFlappyBird();
-    //whichgame === "snake";
   }
    if (whichgame === "snake") {
      square.restartButton();
      menuButton();
    }
   
-
+   if (whichgame === "flappy bird"){
+     menuButton();
+   }
 }
 
 function menuButton(){
@@ -75,10 +78,10 @@ function menuButton(){
   text("Back To Menu", 60, 890);
 
   if (mouseX >= 50 && mouseX <= 250 && mouseY >= 850 && mouseY <= 900 && mouseIsPressed === true) {
-    // print('menu');
     whichgame = "menu";
     background(255);
     square.playSnake();
     square.playFlappyBird();
+    
   }
 }

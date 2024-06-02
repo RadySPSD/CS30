@@ -10,7 +10,6 @@ class snakeGame {
     this.foodY = 50 * Math.floor(random(1, 16));
     this.score = 0;
     this.moveSpeed = 50;
-    this.keepMoving = this.moveSpeed;
     this.otherSegments = [];
     this.losing = false;
   }

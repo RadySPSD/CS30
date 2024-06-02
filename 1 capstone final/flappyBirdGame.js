@@ -14,6 +14,10 @@ class flappyBird {
     this.obstacles.w = 50;
     this.obstacles.color = "green";
     world.gravity.y  = 5;
+
+    this.gapSize = gapSize;
+    this.top = top;
+    this.bottom = bottom;
   }
 
   display() {
@@ -36,6 +40,18 @@ class flappyBird {
       this.bird.vel.x = 0;
       this.bird.vel.y = 0;
     }
+
+    //making obstacles
+    this.gapSize = random(80,120)
+
+    this.top = new this.obstacles.Sprite();
+    this.top.y = random(-150,height/6)
+    this.top.x = this.bird.x + width 
+
+    this.bottom = new this.obstacles.Sprite();
+    this.bottom.y = this.top.h + this.gapSize + random(100)
+    this.bottom.x = this.bird.x + width
+
   }
   controls(){
     if (kb.presses('space')){
@@ -45,7 +61,11 @@ class flappyBird {
 
   }
 
-  bounds(){
-    
-  }
+  // spawn(){
+  //   this.gapSize = random(80,120)
+  //   this.top = new this.obstacles.Sprite;
+  //   this.top.y = random(-150,height/6)
+  //   this.top.x = this.bird.x + width
+  //   //print("obs")
+  // }
 }

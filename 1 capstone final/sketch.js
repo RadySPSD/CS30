@@ -23,6 +23,7 @@ function draw() {
   if (whichgame === "flappy bird") {
     background(255);
     square.display();
+    
   }
 
   //background(220);

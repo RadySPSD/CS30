@@ -59,6 +59,7 @@ function mousePressed() {
   }
 
   if (whichgame === "flappy bird") {
+    square.restartButton();
     menuButton();
   }
 }

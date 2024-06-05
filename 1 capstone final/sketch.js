@@ -14,7 +14,7 @@ let whichgame = "menu";
 //main setup function
 function setup() {
   createCanvas(900, 950);
-
+  square = new mainHub();
 }
 
 // draw funcition that keeps on refreshing
@@ -35,6 +35,7 @@ function draw() {
 
   if (whichgame === "menu") {
     square = new mainHub();
+
   }
 }
 
@@ -52,6 +53,7 @@ function mousePressed() {
     clear();
     square.playSnake();
     square.playFlappyBird();
+    print("54");
   }
   if (whichgame === "snake") {
     square.restartButton();
@@ -73,8 +75,9 @@ function menuButton() {
 
   if (mouseX >= 50 && mouseX <= 250 && mouseY >= 850 && mouseY <= 900 && mouseIsPressed === true) {
     whichgame = "menu";
+    square = new mainHub();
     clear();
-    square.playSnake();
-    square.playFlappyBird();
+
+    print("77");
   }
 }

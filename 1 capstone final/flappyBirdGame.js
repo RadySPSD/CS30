@@ -10,12 +10,12 @@ class flappyBird {
     this.obstacles = new Group();
 
     this.obstacles.collider = 'k';
-    this.obstacles.h = 300;
+    this.obstacles.h = 700;
     this.obstacles.w = 50;
     this.obstacles.color = "green";
-    world.gravity.y = 5;
+    world.gravity.y = 10;
 
-    setInterval(this.setScore, 500);
+    setInterval(this.setScore, 1000);
 
     this.gapSize = this.gapSize;
     this.top = top;
@@ -45,7 +45,7 @@ class flappyBird {
     camera.x = this.bird.x + 100;
     fill(100, 255, 100);
 
-    if (this.bird.y > height - 50) {
+    if (this.bird.y > height ) {
       this.bird.y = height / 2;
       this.bird.x = 100;
       this.bird.vel.x = 0;
@@ -64,7 +64,6 @@ class flappyBird {
     }
 
     //making obstacles
-    //print(this.gameOver);
     if (this.gameOver === true) {
       fill(0, 255, 0);
       rect(windowWidth / 2 - 205, windowHeight / 2 - 65, 430, 100);
@@ -84,7 +83,8 @@ class flappyBird {
 
   controls() {
     if (kb.presses('space')) {
-      this.bird.vel.y -= 3;
+      this.bird.vel.y = 0;
+      this.bird.vel.y -= 4;
     }
   }
 
@@ -113,17 +113,16 @@ class flappyBird {
       this.pipes();
 
       this.score = 0;
-      print('wow');
     }
   }
 
   pipes() {
-    if (frameCount % 45 === 0) {
+    if (frameCount % 100 === 0) {
 
-      this.gapSize = random(80, 120);
+      this.gapSize = random(80, 350);
 
       this.top = new this.obstacles.Sprite();
-      this.top.y = this.gapSize + 50;
+      this.top.y = this.gapSize +100;
       this.top.x = this.bird.x + 500;
       this.top.vel.x = -3;
 

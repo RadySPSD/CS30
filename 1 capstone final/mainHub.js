@@ -5,6 +5,11 @@ class mainHub {
     this.bg;
   }
 
+  goToMenu(){
+    whichgame = "menu"
+    square = new mainHub();
+  }
+
   playSnake() {
 
     //snake

@@ -6,62 +6,63 @@
 
 //variables
 
+let mainHubActive = true;
+let snakeActive = false;
+let flappyBirdActive = false;
 //variable that selects the class
-let square;
+let game;
 //variable that tells where you are in the program
-let whichgame = "menu";
-
 //main setup function
 function setup() {
   createCanvas(900, 950);
-  square = new mainHub();
+  game = new mainHub();
 }
 
 // draw funcition that keeps on refreshing
 function draw() {
 
-  if (whichgame === "flappy bird") {
+  if (flappyBirdActive === true) {
     background(255);
-    square.display();
+    game.display();
     
   }
 
   //background(220);
-  if (whichgame === "snake") {
-    square.display();
-    square.moveSnake();
-    square.increaseScore();
+  if (snakeActive ===true) {
+    game.display();
+    game.moveSnake();
+    game.increaseScore();
   }
 
-  if (whichgame === "menu") {
-    square = new mainHub();
+  if (mainHubActive === true) {
+    game = new mainHub();
 
   }
 }
 
 function keyPressed() {
-  if (whichgame === "snake") {
-    square.controls();
+  if (snakeActive === true) {
+    game.controls();
   }
-  if (whichgame === "flappy bird") {
-    square.controls();
+  if (flappyBirdActive === true) {
+    game.controls();
   }
 }
 
 function mousePressed() {
-  if (whichgame === "menu") {
+  if (mainHubActive === true) {
     clear();
-    square.playSnake();
-    square.playFlappyBird();
+    game.playSnake();
+    game.playFlappyBird();
     print("54");
   }
-  if (whichgame === "snake") {
-    square.restartButton();
+  if (snakeActive === true) {
+    game.restartButton();
     menuButton();
   }
 
-  if (whichgame === "flappy bird") {
-    square.restartButton();
+  if (flappyBirdActive === true) {
+    game.restartButton();
     menuButton();
   }
 }
@@ -74,10 +75,15 @@ function menuButton() {
   text("Back To Menu", 60, 890);
 
   if (mouseX >= 50 && mouseX <= 250 && mouseY >= 850 && mouseY <= 900 && mouseIsPressed === true) {
-    whichgame = "menu";
-    square = new mainHub();
+    
+    game = new mainHub();
+    
+    mainHubActive === true;
+    snakeActive = false;
+    flappyBirdActive = false;
     clear();
 
     print("77");
   }
 }
+

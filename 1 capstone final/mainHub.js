@@ -6,8 +6,12 @@ class mainHub {
   }
 
   goToMenu(){
-    whichgame = "menu"
-    square = new mainHub();
+
+    game = new mainHub();    
+    
+    mainHubActive = true;
+    snakeActive = false;
+    flappyBirdActive = false;
   }
 
   playSnake() {
@@ -21,9 +25,13 @@ class mainHub {
     if (mouseX >= windowWidth / 2 - 100 && mouseX <= windowWidth / 2 + 100 &&
       mouseY >= windowHeight / 2 - 25 && mouseY <= windowHeight / 2 + 25 &&
       mouseIsPressed === true) {
-      whichgame = "snake";
+
+      snakeActive = true;
+      mainHubActive = false;
+      flappyBirdActive = false;
+
       print("snake");
-      square = new snakeGame();
+      game = new snakeGame();
       
     }
   }
@@ -40,9 +48,13 @@ class mainHub {
       mouseY >= windowHeight / 2 + 50 && mouseY <= windowHeight / 2 + 100 &&
       mouseIsPressed === true) {
       clear();
-      whichgame = "flappy bird";
+
+      mainHubActive = false;
+      snakeActive = false;
+      flappyBirdActive = true;
+      
       print("Flappy bird");
-      square = new flappyBird();
+      game = new flappyBird();
       
     }
   }

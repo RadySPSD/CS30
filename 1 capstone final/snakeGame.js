@@ -26,25 +26,25 @@ class snakeGame {
       this.losing = false;
       this.snakeX = 400;
       this.snakeY = 400;
-      this.direction = "right"
+      this.direction = "right";
       this.moveSpeed = 50;
       this.foodX = 50 * Math.floor(random(1, 16));
       this.foodY = 50 * Math.floor(random(1, 16));
       this.score = 0;
       this.otherSegments = [];
-      print('wow');
+      print("wow");
     }
   }
 
   MenuButton() {
     fill(150);
     rect(50, 850, 200, 50);
-    textSize(30)
-    fill(0)
-    text("Back To Menu", 60, 890)
+    textSize(30);
+    fill(0);
+    text("Back To Menu", 60, 890);
 
     if (mouseX >= 50 && mouseX <= 250 && mouseY >= 850 && mouseY <= 900 && mouseIsPressed === true) {
-      print('menu')
+      print("menu");
     }
   }
 
@@ -64,19 +64,22 @@ class snakeGame {
         }
 
       }
-    } else if (keyCode === 68) { //right
+    } 
+    else if (keyCode === 68) { //right
       if (this.snakeX < 800) {
         if (this.direction !== "left") {
           this.direction = "right";
         }
       }
-    } else if (keyCode === 87) { //up
+    } 
+    else if (keyCode === 87) { //up
       if (this.snakeY > 50) {
         if (this.direction !== "down") {
           this.direction = "up";
         }
       }
-    } else if (keyCode === 83) {  //down
+    } 
+    else if (keyCode === 83) {  //down
       if (this.snakeY < 800) {
         if (this.direction !== "up") {
           this.direction = "down";
@@ -187,11 +190,11 @@ class snakeGame {
         }
 
         if (this.losing === true) {
-          fill(0, 255, 0)
-          rect(windowWidth / 2 - 205, windowHeight / 2 - 65, 430, 100)
-          fill(255, 0, 0)
-          textSize(100)
-          text("game over", windowWidth / 2 - 200, windowHeight / 2)
+          fill(0, 255, 0);
+          rect(windowWidth / 2 - 205, windowHeight / 2 - 65, 430, 100);
+          fill(255, 0, 0);
+          textSize(100);
+          text("game over", windowWidth / 2 - 200, windowHeight / 2);
         }
 
       }

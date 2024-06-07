@@ -14,7 +14,7 @@ let game = new mainHub;
 //main setup function
 function setup() {
   createCanvas(900, 950);
-
+  game = new mainHub();
 }
 
 // draw funcition that keeps on refreshing
@@ -77,3 +77,4 @@ function menuButton() {
     game = new mainHub;
   }
 }
+

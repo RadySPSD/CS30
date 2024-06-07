@@ -5,6 +5,15 @@ class mainHub {
     this.bg;
   }
 
+  goToMenu(){
+
+    game = new mainHub();    
+    
+    mainHubActive = true;
+    snakeActive = false;
+    flappyBirdActive = false;
+  }
+
   playSnake() {
     
     fill(150);

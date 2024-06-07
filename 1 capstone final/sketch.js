@@ -6,10 +6,10 @@
 
 //variables
 
-//variable that selects the class
-let square;
-//variable that tells where you are in the program
-let whichgame = "menu";
+let mainHubActive = true;
+let snakeActive = false;
+let flappyBirdActive = false;
+let game = new mainHub;
 
 //main setup function
 function setup() {
@@ -19,46 +19,44 @@ function setup() {
 
 // draw funcition that keeps on refreshing
 function draw() {
-
-  if (whichgame === "flappy bird") {
+  
+  if (mainHubActive) {
     background(255);
-    square.display();
-    
+    game.playSnake();
+    game.playFlappyBird();
   }
-
-  //background(220);
-  if (whichgame === "snake") {
-    square.display();
-    square.moveSnake();
-    square.increaseScore();
+  else if (snakeActive) {
+    game.display();
+    game.moveSnake();
+    game.increaseScore();
   }
-
-  if (whichgame === "menu") {
-    square = new mainHub();
+  else if (flappyBirdActive) {
+    background(255);
+    game.display();
   }
 }
 
 function keyPressed() {
-  if (whichgame === "snake") {
-    square.controls();
+  if (snakeActive) {
+    game.controls();
   }
-  if (whichgame === "flappy bird") {
-    square.controls();
+  else if (flappyBirdActive) {
+    game.controls();
   }
 }
 
 function mousePressed() {
-  if (whichgame === "menu") {
-    clear();
-    square.playSnake();
-    square.playFlappyBird();
+  if (mainHubActive) {
+    game.playSnake();
+    game.playFlappyBird();
   }
-  if (whichgame === "snake") {
-    square.restartButton();
+  else if (snakeActive) {
+    game.restartButton();
     menuButton();
   }
 
-  if (whichgame === "flappy bird") {
+  else if (flappyBirdActive) {
+    game.restartButton();
     menuButton();
   }
 }
@@ -71,9 +69,11 @@ function menuButton() {
   text("Back To Menu", 60, 890);
 
   if (mouseX >= 50 && mouseX <= 250 && mouseY >= 850 && mouseY <= 900 && mouseIsPressed === true) {
-    whichgame = "menu";
+    mainHubActive = true;
+    snakeActive = false;
+    flappyBirdActive = false;
+
     clear();
-    square.playSnake();
-    square.playFlappyBird();
+    game = new mainHub;
   }
 }

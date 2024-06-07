@@ -6,39 +6,43 @@ class mainHub {
   }
 
   playSnake() {
-
-    //snake
+    
     fill(150);
     rect(windowWidth / 2 - 100, windowHeight / 2 - 25, 200, 50);
     textSize(50);
     fill(0);
     text("Snake", windowWidth / 2 - 60, windowHeight / 2 - 25, 890);
+
     if (mouseX >= windowWidth / 2 - 100 && mouseX <= windowWidth / 2 + 100 &&
       mouseY >= windowHeight / 2 - 25 && mouseY <= windowHeight / 2 + 25 &&
       mouseIsPressed === true) {
-      whichgame = "snake";
-      print("snake");
-      square = new snakeGame();
-      
+
+      snakeActive = true;
+      mainHubActive = false;
+      flappyBirdActive = false;
+
+      game = new snakeGame();
     }
   }
 
   playFlappyBird() {
 
-    //snake
     fill(150);
     rect(windowWidth / 2 - 100, windowHeight / 2 + 50, 200, 50);
     textSize(50);
     fill(0);
     text("Flappy bird", windowWidth / 2 - 60, windowHeight / 2 + 50, 890);
+
     if (mouseX >= windowWidth / 2 - 100 && mouseX <= windowWidth / 2 + 100 &&
       mouseY >= windowHeight / 2 + 50 && mouseY <= windowHeight / 2 + 100 &&
       mouseIsPressed === true) {
       clear();
-      whichgame = "flappy bird";
-      print("Flappy bird");
-      square = new flappyBird();
+
+      flappyBirdActive = true;
+      mainHubActive = false;
+      snakeActive = false;
       
+      game = new flappyBird();      
     }
   }
 

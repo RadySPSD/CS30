@@ -101,7 +101,6 @@ class flappyBird {
       this.gameOver = false;
       loop();
 
-
       //reseting the bird
       this.bird.y = height / 2;
       this.bird.x = 100;
@@ -131,6 +130,26 @@ class flappyBird {
       this.bottom.x = this.bird.x + 500;
       this.bottom.vel.x = -3;
 
+    }
+  }
+
+  mainHubInFlappy(){
+    fill(150);
+    rect(50, 850, 200, 50);
+    textSize(30);
+    fill(0);
+    text("Back To Menu", 60, 890);
+  
+    if (mouseX >= 50 && mouseX <= 250 && mouseY >= 850 && mouseY <= 900 && mouseIsPressed === true) {
+      this.obstacles.removeAll();
+      this.bird.remove();
+      background(255);
+      loop();
+      mainHubActive = true;
+      snakeActive = false;
+      flappyBirdActive = false;
+      clear();
+      game = new mainHub;
     }
   }
 }

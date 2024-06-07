@@ -19,7 +19,6 @@ function setup() {
 
 // draw funcition that keeps on refreshing
 function draw() {
-  
   if (mainHubActive) {
     background(255);
     game.playSnake();
@@ -48,7 +47,7 @@ function keyPressed() {
 function mousePressed() {
   if (mainHubActive) {
     game.playSnake();
-    game.playFlappyBird();
+    //game.playFlappyBird();
   }
   else if (snakeActive) {
     game.restartButton();
@@ -57,7 +56,7 @@ function mousePressed() {
 
   else if (flappyBirdActive) {
     game.restartButton();
-    menuButton();
+    game.mainHubInFlappy();
   }
 }
 
@@ -69,10 +68,11 @@ function menuButton() {
   text("Back To Menu", 60, 890);
 
   if (mouseX >= 50 && mouseX <= 250 && mouseY >= 850 && mouseY <= 900 && mouseIsPressed === true) {
+    background(255);
+    loop();
     mainHubActive = true;
     snakeActive = false;
     flappyBirdActive = false;
-
     clear();
     game = new mainHub;
   }

@@ -100,15 +100,11 @@ class snakeGame {
 
   //snake keeps moving
   moveSnake() {
-    //print(this.losing);
     if (frameCount % 20 === 0) {
       if (this.losing === false) {
         this.updateTail();
 
         if (this.snakeX > 800 || this.snakeX < 50 || this.snakeY > 800 || this.snakeY < 50) {
-
-          
-          print("GAME OVER");
           this.losing = true;
           this.otherSegments.shift();
         }
@@ -140,14 +136,24 @@ class snakeGame {
     if (this.losing !== true) {
       for (let i = this.otherSegments.length - 1; i > 0; i--) {
 
+        if (this.losing === true) {
+          fill(0, 255, 0);
+          rect(windowWidth / 2 - 205, windowHeight / 2 - 65, 430, 100);
+          fill(255, 0, 0);
+          textSize(100);
+          text("game over", windowWidth / 2 - 200, windowHeight / 2);
+        }
 
-        this.otherSegments[i].segmentX = this.otherSegments[i - 1].segmentX;
+        else{
+                  this.otherSegments[i].segmentX = this.otherSegments[i - 1].segmentX;
         this.otherSegments[i].segmentY = this.otherSegments[i - 1].segmentY;
 
 
         if (this.snakeX === this.otherSegments[i].segmentX && this.snakeY === this.otherSegments[i].segmentY) {
           this.losing = true;
         }
+        }
+
       }
       
       if (this.otherSegments.length > 0) {
@@ -170,6 +176,13 @@ class snakeGame {
         noFill();
         rect(this.gridX, this.gridY, this.squareSize);
 
+        if (this.losing === true) {
+          fill(0, 255, 0);
+          rect(windowWidth / 2 - 205, windowHeight / 2 - 65, 430, 100);
+          fill(255, 0, 0);
+          textSize(100);
+          text("game over", windowWidth / 2 - 200, windowHeight / 2);
+        }
 
         if (this.gridX === this.snakeX && this.gridY === this.snakeY) {
           fill(200, 0, 0);
@@ -189,20 +202,13 @@ class snakeGame {
           rect(this.gridX, this.gridY, this.squareSize);
         }
 
-        if (this.losing === true) {
-          fill(0, 255, 0);
-          rect(windowWidth / 2 - 205, windowHeight / 2 - 65, 430, 100);
-          fill(255, 0, 0);
-          textSize(100);
-          text("game over", windowWidth / 2 - 200, windowHeight / 2);
-        }
+
 
       }
     }
     for (let q of this.otherSegments) {
       q.display();
     }
-    //this.restartButton();
   }
 }
 

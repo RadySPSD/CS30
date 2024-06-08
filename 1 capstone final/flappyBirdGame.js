@@ -2,7 +2,6 @@ class flappyBird {
   constructor() {
     this.speed = 5;
     this.score = 0;
-    this.score = 0;
     this.gameOver = false;
 
     this.bird = new Sprite(50, windowHeight / 2, 20, "d");
@@ -14,30 +13,25 @@ class flappyBird {
     this.obstacles.w = 50;
     this.obstacles.color = "green";
     world.gravity.y = 10;
-
-    setInterval(this.setScore, 1000);
-
     this.gapSize = this.gapSize;
     this.top = top;
     this.bottom = this.bottom;
 
-
-
-    fill(0);
-    textSize(30);
-    text(this.score, 50, 50);
   }
 
   lose() {
     noLoop();
     this.gameOver = true;
-  }
-
-  setScore() {
-    this.score += 1;
+    this.score = 0;
   }
 
   display() {
+
+    this.showScore();
+    if (frameCount % 60 === 0){
+      this.score ++;
+    }
+
     if (this.bird.overlaps(this.obstacles)) {
       this.lose();
     }
@@ -50,7 +44,6 @@ class flappyBird {
       this.bird.x = 100;
       this.bird.vel.x = 0;
       this.bird.vel.y = 0;
-      this.score = 0;
       this.lose();
     }
 
@@ -59,7 +52,6 @@ class flappyBird {
       this.bird.x = 100;
       this.bird.vel.x = 0;
       this.bird.vel.y = 0;
-      this.score = 0;
       this.lose();
     }
 
@@ -70,7 +62,6 @@ class flappyBird {
       fill(255, 0, 0);
       textSize(100);
       text("game over", windowWidth / 2 - 200, windowHeight / 2);
-      this.score = 0;
     }
 
 
@@ -78,7 +69,12 @@ class flappyBird {
       this.pipes();
 
     }
+  }
 
+  showScore(){
+    fill(0);
+    textSize(60);
+    text(this.score,50,50)
   }
 
   controls() {
@@ -110,8 +106,6 @@ class flappyBird {
       //reseting the pipes
       this.obstacles.removeAll();
       this.pipes();
-
-      this.score = 0;
     }
   }
 

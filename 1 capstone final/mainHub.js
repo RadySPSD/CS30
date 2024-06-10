@@ -12,6 +12,7 @@ class mainHub {
     mainHubActive = true;
     snakeActive = false;
     flappyBirdActive = false;
+    pongActive = false;
   }
 
   playSnake() {
@@ -29,6 +30,7 @@ class mainHub {
       snakeActive = true;
       mainHubActive = false;
       flappyBirdActive = false;
+      pongActive = false;
 
       game = new snakeGame();
     }
@@ -37,10 +39,10 @@ class mainHub {
   playFlappyBird() {
 
     fill(150);
-    rect(windowWidth / 2 - 100, windowHeight / 2 + 50, 200, 50);
+    rect(windowWidth / 2 - 155, windowHeight / 2 + 50, 300, 50);
     textSize(50);
     fill(0);
-    text("Flappy bird", windowWidth / 2 - 60, windowHeight / 2 + 50, 890);
+    text("Flappy bird", windowWidth / 2 - 125, windowHeight / 2 + 50, 890);
 
     if (mouseX >= windowWidth / 2 - 100 && mouseX <= windowWidth / 2 + 100 &&
       mouseY >= windowHeight / 2 + 50 && mouseY <= windowHeight / 2 + 100 &&
@@ -50,8 +52,30 @@ class mainHub {
       flappyBirdActive = true;
       mainHubActive = false;
       snakeActive = false;
+      pongActive = false;
       
       game = new flappyBird();      
+    }
+  }
+
+  playPong() {
+    
+    fill(150);
+    rect(windowWidth / 2 - 100, windowHeight / 2 - 125, 200, 50);
+    textSize(50);
+    fill(0);
+    text("Pong", windowWidth / 2 - 60, windowHeight / 2 - 125, 890);
+
+    if (mouseX >= windowWidth / 2 - 100 && mouseX <= windowWidth / 2 + 100 &&
+      mouseY >= windowHeight / 2 - 125 && mouseY <= windowHeight / 2 + 125 &&
+      mouseIsPressed === true) {
+
+      snakeActive = false;
+      mainHubActive = false;
+      flappyBirdActive = false
+      pongActive = true;
+
+      game = new pongGame();
     }
   }
 

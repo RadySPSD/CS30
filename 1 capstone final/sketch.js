@@ -9,6 +9,7 @@
 let mainHubActive = true;
 let snakeActive = false;
 let flappyBirdActive = false;
+let pongActive = false;
 let game = new mainHub;
 
 //main setup function
@@ -23,6 +24,7 @@ function draw() {
     background(255);
     game.playSnake();
     game.playFlappyBird();
+    game.playPong()
   }
   else if (snakeActive) {
     game.display();
@@ -31,6 +33,9 @@ function draw() {
   }
   else if (flappyBirdActive) {
     background(255);
+    game.display();
+  }
+  else if (pongActive){
     game.display();
   }
 }
@@ -58,6 +63,10 @@ function mousePressed() {
     game.restartButton();
     game.mainHubInFlappy();
   }
+
+  // else if (pongActive){
+  //   game.mainHubInPong();
+  // }
 }
 
 function menuButton() {
@@ -73,6 +82,7 @@ function menuButton() {
     mainHubActive = true;
     snakeActive = false;
     flappyBirdActive = false;
+    pongActive = false;
     clear();
     game = new mainHub;
   }

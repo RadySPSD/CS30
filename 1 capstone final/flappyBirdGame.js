@@ -142,6 +142,7 @@ class flappyBird {
       mainHubActive = true;
       snakeActive = false;
       flappyBirdActive = false;
+      pongActive = false;
       clear();
       game = new mainHub;
     }

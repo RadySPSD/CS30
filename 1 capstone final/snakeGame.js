@@ -145,13 +145,13 @@ class snakeGame {
         }
 
         else{
-                  this.otherSegments[i].segmentX = this.otherSegments[i - 1].segmentX;
-        this.otherSegments[i].segmentY = this.otherSegments[i - 1].segmentY;
+          this.otherSegments[i].segmentX = this.otherSegments[i - 1].segmentX;
+          this.otherSegments[i].segmentY = this.otherSegments[i - 1].segmentY;
 
 
-        if (this.snakeX === this.otherSegments[i].segmentX && this.snakeY === this.otherSegments[i].segmentY) {
-          this.losing = true;
-        }
+          if (this.snakeX === this.otherSegments[i].segmentX && this.snakeY === this.otherSegments[i].segmentY) {
+            this.losing = true;
+          }
         }
 
       }

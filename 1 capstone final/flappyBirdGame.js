@@ -5,6 +5,7 @@ class flappyBird {
     this.gameOver = false;
 
     this.bird = new Sprite(50, windowHeight / 2, 20, "d");
+    this.bird.depth = -1;
 
     this.obstacles = new Group();
 
@@ -12,6 +13,7 @@ class flappyBird {
     this.obstacles.h = 700;
     this.obstacles.w = 50;
     this.obstacles.color = "green";
+    this.obstacles.depth = -1;
     world.gravity.y = 10;
     this.gapSize = this.gapSize;
     this.top = top;

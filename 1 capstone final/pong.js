@@ -67,7 +67,7 @@ class pongGame {
 
     playerAMovement() {
         //player A movement
-        if (keyIsPressed && keyCode === 87 && this.playerAY > 50 ) {
+        if (keyIsPressed && keyCode === 87 && this.playerAY > 50) {
             this.playerAY -= 5
         }
 
@@ -106,33 +106,33 @@ class pongGame {
         }
     }
 
-    collisionDetection(){
+    collisionDetection() {
         //player A
-        if (this.ballX <= this.playerAX + 50 && 
-            this.ballY >=this.playerAY &&
-            this.ballY <= this.playerAY+100){
-            this.ballXSpeed *= -1; 
+        if (this.ballX <= this.playerAX + 50 &&
+            this.ballY >= this.playerAY &&
+            this.ballY <= this.playerAY + 100) {
+            this.ballXSpeed *= -1;
         }
 
         //player B
-        if (this.ballX >= this.playerBX - 25 && 
-            this.ballY >=this.playerBY &&
-            this.ballY <= this.playerBY+100){
-            this.ballXSpeed *= -1; 
-            }
+        if (this.ballX >= this.playerBX - 25 &&
+            this.ballY >= this.playerBY &&
+            this.ballY <= this.playerBY + 100) {
+            this.ballXSpeed *= -1;
+        }
     }
 
-    losingLine(){
+    losingLine() {
         for (let i = 0; i < width; i += 40) {
             fill(255, 255, 0);
-            rect(this.playerAX, i , 1, 20);
+            rect(this.playerAX, i, 1, 20);
             //this.space += 0.1;
-          }
+        }
 
-          for (let i = 0; i < width; i += 40) {
+        for (let i = 0; i < width; i += 40) {
             fill(255, 255, 0);
-            rect(this.playerBX + 25, i , 1, 20);
-            
-          }
-    } 
+            rect(this.playerBX + 25, i, 1, 20);
+
+        }
+    }
 }

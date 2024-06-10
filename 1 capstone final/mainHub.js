@@ -33,6 +33,7 @@ class mainHub {
       pongActive = false;
 
       game = new snakeGame();
+      print('omg')
     }
   }
 
@@ -54,7 +55,8 @@ class mainHub {
       snakeActive = false;
       pongActive = false;
       
-      game = new flappyBird();      
+      game = new flappyBird();     
+      print("wow");
     }
   }
 
@@ -67,15 +69,16 @@ class mainHub {
     text("Pong", windowWidth / 2 - 60, windowHeight / 2 - 125, 890);
 
     if (mouseX >= windowWidth / 2 - 100 && mouseX <= windowWidth / 2 + 100 &&
-      mouseY >= windowHeight / 2 - 125 && mouseY <= windowHeight / 2 + 125 &&
+      mouseY >= windowHeight / 2 - 125 && mouseY <= windowHeight / 2 - 90 &&
       mouseIsPressed === true) {
 
       snakeActive = false;
       mainHubActive = false;
-      flappyBirdActive = false
+      flappyBirdActive = false;
       pongActive = true;
 
       game = new pongGame();
+      print("not wow");
     }
   }
 

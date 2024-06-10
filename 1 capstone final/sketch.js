@@ -24,7 +24,7 @@ function draw() {
     background(255);
     game.playSnake();
     game.playFlappyBird();
-    game.playPong()
+    //game.playPong();
   }
   else if (snakeActive) {
     game.display();
@@ -87,4 +87,3 @@ function menuButton() {
     game = new mainHub;
   }
 }
-

@@ -8,7 +8,7 @@ class pongGame {
 
         this.playerAX = 75;
         this.playerAY = height / 2;
-        this.playerBX = 775;
+        this.playerBX = 800;
         this.playerBY = height / 2;
 
         this.space = 50;
@@ -20,7 +20,7 @@ class pongGame {
         rect(50, 50, 800);
 
         fill(150);
-        ellipse(this.ballX, this.ballY, 50);
+        ellipse(this.ballX, this.ballY, 15);
         this.ballX += this.ballXSpeed;
         this.ballY += this.ballYSpeed;
         this.bouncing();
@@ -33,23 +33,23 @@ class pongGame {
 
         this.collisionDetection();
 
-        this.losingLine()
+        this.losingLine();
     }
 
     bouncing() {
-        if (this.ballX > 825) {
+        if (this.ballX > 840) {
             this.ballXSpeed *= -1;
         }
 
-        else if (this.ballX < 75) {
+        else if (this.ballX < 60) {
             this.ballXSpeed *= -1;
         }
 
-        else if (this.ballY > 825) {
+        else if (this.ballY > 840) {
             this.ballYSpeed *= -1;
         }
 
-        else if (this.ballY < 75) {
+        else if (this.ballY < 60) {
             this.ballYSpeed *= -1;
         }
 
@@ -58,32 +58,32 @@ class pongGame {
     player() {
         //player A
         fill(0);
-        rect(this.playerAX, this.playerAY, 25, 100);
+        rect(this.playerAX, this.playerAY, 15, 100);
 
         //player B
         fill(0);
-        rect(this.playerBX, this.playerBY, 25, 100);
+        rect(this.playerBX, this.playerBY, 15, 100);
     }
 
     playerAMovement() {
         //player A movement
         if (keyIsPressed && keyCode === 87 && this.playerAY > 50) {
-            this.playerAY -= 5
+            this.playerAY -= 5;
         }
 
         if (keyIsPressed && keyCode === 83 && this.playerAY + 50 < 800) {
-            this.playerAY += 5
+            this.playerAY += 5;
         }
     }
 
     playerBMovement() {
         //play B movement   
         if (keyIsPressed && keyCode === 38 && this.playerBY > 50) {
-            this.playerBY -= 5
+            this.playerBY -= 5;
         }
 
         if (keyIsPressed && keyCode === 40 && this.playerBY + 50 < 800) {
-            this.playerBY += 5
+            this.playerBY += 5;
         }
     }
 
@@ -123,15 +123,14 @@ class pongGame {
     }
 
     losingLine() {
-        for (let i = 0; i < width; i += 40) {
+        for (let i = 50; i < 850; i += 40) {
             fill(255, 255, 0);
             rect(this.playerAX, i, 1, 20);
-            //this.space += 0.1;
         }
 
-        for (let i = 0; i < width; i += 40) {
+        for (let i = 50; i < 850; i += 40) {
             fill(255, 255, 0);
-            rect(this.playerBX + 25, i, 1, 20);
+            rect(this.playerBX + 15, i, 1, 20);
 
         }
     }

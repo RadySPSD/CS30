@@ -1,41 +1,28 @@
-
-// Capstone multi game project
-// Ahmed Rady
-// 20 may 2024
-// later
-
-//variables
-
 let mainHubActive = true;
 let snakeActive = false;
 let flappyBirdActive = false;
 let pongActive = false;
-let game = new mainHub;
+let game = new mainHub();
 
-//main setup function
 function setup() {
   createCanvas(900, 950);
   game = new mainHub();
 }
 
-// draw funcition that keeps on refreshing
 function draw() {
   if (mainHubActive) {
     background(255);
     game.playSnake();
     game.playFlappyBird();
-    //game.playPong();
-  }
-  else if (snakeActive) {
+    game.playPong();
+  } else if (snakeActive) {
     game.display();
     game.moveSnake();
     game.increaseScore();
-  }
-  else if (flappyBirdActive) {
+  } else if (flappyBirdActive) {
     background(255);
     game.display();
-  }
-  else if (pongActive){
+  } else if (pongActive) {
     game.display();
   }
 }
@@ -43,8 +30,7 @@ function draw() {
 function keyPressed() {
   if (snakeActive) {
     game.controls();
-  }
-  else if (flappyBirdActive) {
+  } else if (flappyBirdActive) {
     game.controls();
   }
 }
@@ -52,21 +38,17 @@ function keyPressed() {
 function mousePressed() {
   if (mainHubActive) {
     game.playSnake();
-    //game.playFlappyBird();
-  }
-  else if (snakeActive) {
+    game.playFlappyBird();
+  } else if (snakeActive) {
     game.restartButton();
     menuButton();
-  }
-
-  else if (flappyBirdActive) {
+  } else if (flappyBirdActive) {
     game.restartButton();
     game.mainHubInFlappy();
   }
-
-  // else if (pongActive){
-  //   game.mainHubInPong();
-  // }
+  else if (pongActive) {
+    game.mainHubInPong();
+  }
 }
 
 function menuButton() {
@@ -84,6 +66,6 @@ function menuButton() {
     flappyBirdActive = false;
     pongActive = false;
     clear();
-    game = new mainHub;
+    game = new mainHub();
   }
 }

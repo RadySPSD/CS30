@@ -48,6 +48,8 @@ function mousePressed() {
   }
   else if (pongActive) {
     game.mainHubInPong();
+    game.pauseButton();
+    game.resumeButton();
   }
 }
 

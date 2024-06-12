@@ -3,15 +3,20 @@ class pongGame {
 
         this.ballX = width / 2;
         this.ballY = height / 2;
-        this.ballXSpeed = 4;
-        this.ballYSpeed = 5;
+        this.ballXSpeed = 6;
+        this.ballYSpeed = 3;
 
         this.playerAX = 75;
         this.playerAY = height / 2;
         this.playerBX = 800;
         this.playerBY = height / 2;
 
-        this.space = 50;
+        this.space = 50;        
+        
+        this.playerAScore = 0;
+        this.playerBScore = 0;
+
+        this.gameState = "onGoing";
     }
 
     display() {
@@ -34,6 +39,15 @@ class pongGame {
         this.collisionDetection();
 
         this.losingLine();
+
+        this.losing();
+
+        this.showingScore();
+        this.showbutton();
+        //this.pauseButton();
+        //this.resumeButton();
+
+
     }
 
     bouncing() {
@@ -108,14 +122,14 @@ class pongGame {
 
     collisionDetection() {
         //player A
-        if (this.ballX <= this.playerAX + 50 &&
+        if (this.ballX <= this.playerAX + 25 &&
             this.ballY >= this.playerAY &&
             this.ballY <= this.playerAY + 100) {
             this.ballXSpeed *= -1;
         }
 
         //player B
-        if (this.ballX >= this.playerBX - 25 &&
+        if (this.ballX >= this.playerBX - 5 &&
             this.ballY >= this.playerBY &&
             this.ballY <= this.playerBY + 100) {
             this.ballXSpeed *= -1;
@@ -134,4 +148,54 @@ class pongGame {
 
         }
     }
+
+    losing(){
+        if (this.ballX < this.playerAX){
+            this.playerBScore ++;
+            this.ballX = width / 2;
+            this.ballY = height / 2; 
+            this.ballXSpeed *= -1;
+        }
+        if (this.ballX > this.playerBX + 15){
+            this.playerAScore ++;
+            this.ballX = width / 2;
+            this.ballY = height / 2; 
+            this.ballXSpeed *= -1;
+        }
+    }
+
+    showingScore(){
+        fill(0);
+        text("Player A Score: " + this.playerAScore, 100, 40);
+        text("Player B Score: " + this.playerBScore, 600, 40);
+
+    }
+
+    showbutton(){
+                fill(150);
+        rect(windowWidth / 2 - 100, 850, 200, 50);
+        textSize(30);
+        fill(0);
+        text("Pause/Resume", windowWidth / 2 - 80, 890);
+    }
+
+    pauseButton(){
+        if (mouseX >= windowWidth / 2 - 100 && mouseX <= windowWidth / 2 + 100 && mouseY >= 850 && mouseY <= 900 && mouseIsPressed === true) {
+            if (this.gameState === "onGoing"){
+                noLoop();
+                this.gameState = "Paused";
+            }
+        }
+    }
+
+    resumeButton(){
+        if (mouseX >= windowWidth / 2 - 100 && mouseX <= windowWidth / 2 + 100 && mouseY >= 850 && mouseY <= 900 && mouseIsPressed === true) {
+            if (this.gameState === "Paused"){
+                loop();
+                this.gameState = "onGoing";
+            }           
+        }
+    }
+
+    
 }

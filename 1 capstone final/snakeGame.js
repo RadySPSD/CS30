@@ -138,10 +138,10 @@ class snakeGame {
 
         if (this.losing === true) {
           fill(0, 255, 0);
-          rect(windowWidth / 2 - 205, windowHeight / 2 - 65, 430, 100);
+          rect(windowWidth / 2 - 205, windowHeight / 2 - 65 + 1000, 430, 100);
           fill(255, 0, 0);
           textSize(100);
-          text("game over", windowWidth / 2 - 200, windowHeight / 2);
+          text("game over", windowWidth / 2 - 200, windowHeight / 2 + 1000);
         }
 
         else{

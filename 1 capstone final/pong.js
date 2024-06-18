@@ -1,13 +1,14 @@
 class pongGame {
   constructor() {
-
+    this.gameX = windowWidth/2 - 400
+    this.gameY = windowHeight/2 - 450
     this.ballX = width / 2;
     this.ballY = height / 2;
     this.ballXSpeed = 6;
     this.ballYSpeed = 3;
-    this.playerAX = 75;
+    this.playerAX = windowWidth/2 - 400 + 25;
     this.playerAY = height / 2;
-    this.playerBX = 800;
+    this.playerBX = windowWidth/2 - 400 + 760;
     this.playerBY = height / 2;
     this.space = 50;        
     
@@ -19,9 +20,9 @@ class pongGame {
   }
 
   display() {
-    background(255);
+    background(200);
     fill(255);
-    rect(50, 50, 800);
+    rect(this.gameX, this.gameY, 800);
 
     fill(150);
     ellipse(this.ballX, this.ballY, 15);
@@ -45,7 +46,7 @@ class pongGame {
   }
 
   bouncing() {
-    if (this.ballX > 840) {
+    if (this.ballX + 7.5 >= this.gameX + 800) {
       this.ballXSpeed *= -1;
     }
     else if (this.ballX < 60) {
@@ -93,13 +94,13 @@ class pongGame {
 
   mainHubInPong() {
     fill(150);
-    rect(50, 850, 200, 50);
+    rect(windowWidth/2 - 400, 850, 200, 50);
     textSize(30);
     fill(0);
-    text("Back To Menu", 60, 890);
+    text("Back To Menu", windowWidth/2 - 390, 890);
 
-    if (mouseX >= 50 && mouseX <= 250 && mouseY >= 850 && mouseY <= 900 && mouseIsPressed === true) {
-      background(255);
+    if (mouseX >= windowWidth/2 - 400 && mouseX <= windowWidth/2 - 400 + 200 && mouseY >= 850 && mouseY <= 900 && mouseIsPressed === true) {
+      background(200);
       loop();
       mainHubActive = true;
       snakeActive = false;
@@ -141,35 +142,25 @@ class pongGame {
   }
 
   losing(){
-    if (this.ballX < 60){
+    if (this.ballX < this.gameX + 10){
       this.playerBScore ++;
-      this.ballX = width / 2;
-      this.ballY = height / 2; 
-    //   this.ballXSpeed *= 1;
+      this.ballX = windowWidth / 2;
+      this.ballY = windowHeight / 2; 
+      this.ballXSpeed *= -1
     }
-    if (this.ballX > 840){
+    if (this.ballX > this.gameX + 790){
       this.playerAScore ++;
-      this.ballX = width / 2;
-      this.ballY = height / 2; 
-    //   this.ballXSpeed *= -1;
+      this.ballX = windowWidth / 2;
+      this.ballY = windowHeight / 2; 
     }
   }
 
   showingScore(){
     fill(0);
-    text("Player A Score: " + this.playerAScore, 100, 40);
-    text("Player B Score: " + this.playerBScore, 600, 40);
+    text("Player A Score: " + this.playerAScore, windowWidth/2 - 400 + 25, 40);
+    text("Player B Score: " + this.playerBScore, windowWidth/2 - 400 + 565, 40);
 
   }
-
-  showbutton(){
-    fill(150);
-    rect(windowWidth / 2 - 100, 850, 200, 50);
-    textSize(30);
-    fill(0);
-    text("Pause/Resume", windowWidth / 2 - 80, 890);
-  }
-
 
   resumeButton(){
     this.showbutton();

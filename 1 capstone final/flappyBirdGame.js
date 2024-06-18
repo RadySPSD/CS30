@@ -22,9 +22,19 @@ class flappyBird {
   }
 
   lose() {
+
+    fill(0, 255, 0);
+    rect(windowWidth / 2 + 450, windowHeight / 2 - 85, 300, 200);
+    fill(255, 0, 0);
+    textSize(100);
+    text("Game", windowWidth / 2 + 475, windowHeight / 2);
+    text("Over", windowWidth / 2 + 495, windowHeight / 2 + 75);
+
     noLoop();
     this.gameOver = true;
     this.score = 0;
+
+    
   }
 
   display() {
@@ -57,26 +67,14 @@ class flappyBird {
       this.lose();
     }
 
-    //making obstacles
-    if (this.gameOver === true) {
-      fill(0, 255, 0);
-      rect(windowWidth / 2 - 205, windowHeight / 2 - 65, 430, 100);
-      fill(255, 0, 0);
-      textSize(100);
-      text("game over", windowWidth / 2 - 200, windowHeight / 2);
-    }
-
-
-    else {
       this.pipes();
 
-    }
   }
 
   showScore(){
     fill(0);
-    textSize(60);
-    text(this.score,50,50)
+    textSize(90);
+    text("score: "+ this.score,windowWidth / 2 + 465, windowHeight / 2 - 100)
   }
 
   controls() {
@@ -112,7 +110,8 @@ class flappyBird {
   }
 
   pipes() {
-    if (frameCount % 100 === 0) {
+    if (this.gameOver === false){
+          if (frameCount % 100 === 0) {
 
       this.gapSize = random(80, 350);
 
@@ -127,6 +126,8 @@ class flappyBird {
       this.bottom.vel.x = -3;
 
     }
+    }
+
   }
 
   mainHubInFlappy(){
@@ -139,7 +140,7 @@ class flappyBird {
     if (mouseX >= 50 && mouseX <= 250 && mouseY >= 850 && mouseY <= 900 && mouseIsPressed === true) {
       this.obstacles.removeAll();
       this.bird.remove();
-      background(255);
+      background(200);
       loop();
       mainHubActive = true;
       snakeActive = false;

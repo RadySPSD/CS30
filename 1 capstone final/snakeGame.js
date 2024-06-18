@@ -12,17 +12,19 @@ class snakeGame {
     this.moveSpeed = 50;
     this.otherSegments = [];
     this.losing = false;
+    this.foodCheckX = 0;
+    this.foodCheckY = 0;
   }
 
   restartButton() {
 
     fill(150);
-    rect(windowWidth / 2 - 100, 850, 200, 50);
+    rect(650, 850, 200, 50);
     textSize(60);
     fill(0);
-    text("restart", windowWidth / 2 - 80, 890);
+    text("restart", 675 , 890);
 
-    if (mouseX >= windowWidth / 2 - 100 && mouseX <= windowWidth / 2 + 100 && mouseY >= 850 && mouseY <= 900 && mouseIsPressed === true) {
+    if (mouseX >= 650 && mouseX <= 850 && mouseY >= 850 && mouseY <= 900 && mouseIsPressed === true) {
       this.losing = false;
       this.snakeX = 400;
       this.snakeY = 400;
@@ -57,7 +59,7 @@ class snakeGame {
 
   controls() {
 
-    if (keyCode === 65) {  //left
+    if (keyCode === 65 || keyCode === LEFT_ARROW) {  //left
       if (this.snakeX > 50) {
         if (this.direction !== "right") {
           this.direction = "left";
@@ -65,21 +67,21 @@ class snakeGame {
 
       }
     } 
-    else if (keyCode === 68) { //right
+    else if (keyCode === 68 || keyCode === RIGHT_ARROW) { //right
       if (this.snakeX < 800) {
         if (this.direction !== "left") {
           this.direction = "right";
         }
       }
     } 
-    else if (keyCode === 87) { //up
+    else if (keyCode === 87 || keyCode === UP_ARROW) { //up
       if (this.snakeY > 50) {
         if (this.direction !== "down") {
           this.direction = "up";
         }
       }
     } 
-    else if (keyCode === 83) {  //down
+    else if (keyCode === 83 || keyCode === DOWN_ARROW) {  //down
       if (this.snakeY < 800) {
         if (this.direction !== "up") {
           this.direction = "down";
@@ -93,14 +95,24 @@ class snakeGame {
       this.score++;
       console.log(this.score);
       this.spawningSegments();
-      this.foodX = 50 * Math.floor(random(1, 16));
-      this.foodY = 50 * Math.floor(random(1, 16));
+      this.foodCheck();
+    }
+  }
+
+  foodCheck(){
+    this.foodCheckX = 50 * Math.floor(random(1, 16));
+    this.foodCheckY = 50 * Math.floor(random(1, 16));
+
+    if (this.foodCheckX !== this.snakeX && this.foodCheckX !== this.segmentX
+        && this.foodCheckY !== this.snakeY && this.foodCheckY !== this.segmentY){
+          this.foodX = this.foodCheckX
+          this.foodY = this.foodCheckY
     }
   }
 
   //snake keeps moving
   moveSnake() {
-    if (frameCount % 20 === 0) {
+    if (frameCount % 10 === 0) {
       if (this.losing === false) {
         this.updateTail();
 
@@ -165,9 +177,36 @@ class snakeGame {
   }
   //class methods
   display() {
+    background(200)
 
+    fill(255,0,0)
+    textSize(40)
+    text("Conrols: W,A,S,D", windowWidth / 2 + 225 , windowHeight - 700);
+
+    fill(255,0,0)
+    textSize(40)
+    text("or", windowWidth / 2 + 350 , windowHeight - 640)
+
+    fill(255,0,0)
+    textSize(40)
+    text("Conrols: Up,Down,Left,Right", windowWidth / 2 + 140 , windowHeight - 590)
+
+    fill(255,0,0)
+    textSize(40)
+    text("Score:" + this.score, windowWidth / 2 + 300 , windowHeight - 400)
+
+    fill(150);
+    rect(650, 850, 200, 50);
+    textSize(60);
+    fill(0);
+    text("restart", 675 , 890);
+
+    fill(150);
+    rect(50, 850, 200, 50);
+    textSize(30);
+    fill(0);
+    text("Back To Menu", 60, 890);
     //segments
-
 
 
     for (this.gridX = 50; this.gridX < 913 - 100; this.gridX = this.gridX + this.squareSize) {
@@ -178,10 +217,10 @@ class snakeGame {
 
         if (this.losing === true) {
           fill(0, 255, 0);
-          rect(windowWidth / 2 - 205, windowHeight / 2 - 65, 430, 100);
+          rect(windowWidth / 2 + 155, windowHeight / 2 - 65, 430, 100);
           fill(255, 0, 0);
           textSize(100);
-          text("game over", windowWidth / 2 - 200, windowHeight / 2);
+          text("game over", windowWidth / 2 + 160, windowHeight / 2);
         }
 
         if (this.gridX === this.snakeX && this.gridY === this.snakeY) {

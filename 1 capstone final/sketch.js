@@ -5,13 +5,13 @@ let pongActive = false;
 let game = new mainHub();
 
 function setup() {
-  createCanvas(900, 950);
+  createCanvas(windowWidth, windowHeight);
   game = new mainHub();
 }
 
 function draw() {
   if (mainHubActive) {
-    background(255);
+    background(200);
     game.playSnake();
     game.playFlappyBird();
     game.playPong();
@@ -20,7 +20,7 @@ function draw() {
     game.moveSnake();
     game.increaseScore();
   } else if (flappyBirdActive) {
-    background(255);
+    background(200);
     game.display();
   } else if (pongActive) {
     game.display();
@@ -58,8 +58,8 @@ function menuButton() {
   fill(0);
   text("Back To Menu", 60, 890);
 
-  if (mouseX >= 50 && mouseX <= 250 && mouseY >= 850 && mouseY <= 900 && mouseIsPressed === true) {
-    background(255);
+  if (mouseX >= 50 && mouseX <= 250 && mouseY >= 850 && mouseY <= windowWidth && mouseIsPressed === true) {
+    background(200);
     loop();
     mainHubActive = true;
     snakeActive = false;

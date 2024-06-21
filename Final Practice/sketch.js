@@ -87,7 +87,7 @@ class Spiral { //frames 0 - 15    ..16
     }
     else {
       image(spiralImages[this.currentFrame], this.pos.x, this.pos.y);
-      if (frameCount % 3 === 0) {
+      if (frameCount % 1 === 0) {
         this.currentFrame++;
       }
     }

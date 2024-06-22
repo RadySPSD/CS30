@@ -139,10 +139,10 @@ class snakeGame {
         if (this.losing === true) { // Check if game is over
           // Display game over message
           fill(0, 255, 0);
-          rect(windowWidth / 2 - 205, windowHeight / 2 - 65 + 1000, 430, 100);
+          rect(width / 2 - 205, windowHeight / 2 - 65 + 1000, 430, 100);
           fill(255, 0, 0);
           textSize(100);
-          text("game over", windowWidth / 2 - 200, windowHeight / 2 + 1000);
+          text("game over", width / 2 - 200, windowHeight / 2 + 1000);
         } else {
           // Update tail segment positions
           this.otherSegments[i].segmentX = this.otherSegments[i - 1].segmentX;
@@ -170,10 +170,10 @@ class snakeGame {
     // Display game instructions
     fill(255, 0, 0);
     textSize(40);
-    text("Controls: W,A,S,D", windowWidth / 2 + 225, windowHeight - 700);
-    text("or", windowWidth / 2 + 350, windowHeight - 640);
-    text("Controls: Up,Down,Left,Right", windowWidth / 2 + 140, windowHeight - 590);
-    text("Score:" + this.score, windowWidth / 2 + 300, windowHeight - 400);
+    text("Controls: W,A,S,D", width / 2 + 225, windowHeight - 700);
+    text("or", width / 2 + 350, windowHeight - 640);
+    text("Controls: Up,Down,Left,Right", width / 2 + 140, windowHeight - 590);
+    text("Score:" + this.score, width / 2 + 300, windowHeight - 400);
 
     // Draw restart button
     fill(150);
@@ -199,10 +199,10 @@ class snakeGame {
         // Display game over message if the game is over
         if (this.losing === true) {
           fill(0, 255, 0);
-          rect(windowWidth / 2 + 155, windowHeight / 2 - 65, 430, 100);
+          rect(width / 2 + 155, windowHeight / 2 - 65, 430, 100);
           fill(255, 0, 0);
           textSize(100);
-          text("game over", windowWidth / 2 + 160, windowHeight / 2);
+          text("game over", width / 2 + 160, windowHeight / 2);
         }
 
         // Highlight snake head

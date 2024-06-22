@@ -16,14 +16,14 @@ class mainHub {
   playSnake() {
     // Draw Snake button
     fill(150);
-    rect(windowWidth / 2 - 100, windowHeight / 2 - 25, 200, 50);
+    rect(width / 2 - 100, height / 2 - 25, 200, 50,25);
     textSize(50);
     fill(0);
-    text("Snake", windowWidth / 2 - 60, windowHeight / 2 - 25, 890);
+    text("Snake", width / 2 - 60, height / 2 - 25, 890);
 
     // Check if mouse is pressed on Snake button
-    if (mouseX >= windowWidth / 2 - 100 && mouseX <= windowWidth / 2 + 100 &&
-        mouseY >= windowHeight / 2 - 25 && mouseY <= windowHeight / 2 + 25 &&
+    if (mouseX >= width / 2 - 100 && mouseX <= width / 2 + 100 &&
+        mouseY >= height / 2 - 25 && mouseY <= height / 2 + 25 &&
         mouseIsPressed === true) {
 
       // Activate Snake game and deactivate others
@@ -40,14 +40,14 @@ class mainHub {
   playFlappyBird() {
     // Draw Flappy Bird button
     fill(150);
-    rect(windowWidth / 2 - 155, windowHeight / 2 + 50, 300, 50);
+    rect(width / 2 - 155, height / 2 + 50, 300, 50,25);
     textSize(50);
     fill(0);
-    text("Flappy Bird", windowWidth / 2 - 125, windowHeight / 2 + 50, 890);
+    text("Flappy Bird", width / 2 - 125, height / 2 + 50, 890);
 
     // Check if mouse is pressed on Flappy Bird button
-    if (mouseX >= windowWidth / 2 - 100 && mouseX <= windowWidth / 2 + 100 &&
-        mouseY >= windowHeight / 2 + 50 && mouseY <= windowHeight / 2 + 100 &&
+    if (mouseX >= width / 2 - 100 && mouseX <= width / 2 + 100 &&
+        mouseY >= height / 2 + 50 && mouseY <= height / 2 + 100 &&
         mouseIsPressed === true) {
 
       // Activate Flappy Bird game and deactivate others
@@ -65,14 +65,14 @@ class mainHub {
   playPong() {
     // Draw Pong button
     fill(150);
-    rect(windowWidth / 2 - 100, windowHeight / 2 - 125, 200, 50);
+    rect(width / 2 - 100, height / 2 - 125, 200, 50, 25);
     textSize(50);
     fill(0);
-    text("Pong", windowWidth / 2 - 60, windowHeight / 2 - 125, 890);
+    text("Pong", width / 2 - 60, height / 2 - 125, 890);
 
     // Check if mouse is pressed on Pong button
-    if (mouseX >= windowWidth / 2 - 100 && mouseX <= windowWidth / 2 + 100 &&
-        mouseY >= windowHeight / 2 - 125 && mouseY <= windowHeight / 2 - 90 &&
+    if (mouseX >= width / 2 - 100 && mouseX <= width / 2 + 100 &&
+        mouseY >= height / 2 - 125 && mouseY <= height / 2 - 90 &&
         mouseIsPressed === true) {
 
       // Activate Pong game and deactivate others

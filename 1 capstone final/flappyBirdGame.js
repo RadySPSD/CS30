@@ -5,7 +5,7 @@ class flappyBird {
     this.gameOver = false; // Game over flag
 
     // Bird object (using external library or class Sprite)
-    this.bird = new Sprite(50, windowHeight / 2, 20, "d");
+    this.bird = new Sprite(50, height / 2, 20, "d");
     this.bird.depth = -1; // Setting depth to ensure proper rendering order
 
     // Group of obstacles (using external library or class Group)
@@ -31,11 +31,11 @@ class flappyBird {
   lose() {
     // Display game over message
     fill(0, 255, 0);
-    rect(windowWidth / 2 + 450, windowHeight / 2 - 85, 300, 200);
+    rect(width / 2 + 450, height / 2 - 85, 300, 200);
     fill(255, 0, 0);
     textSize(100);
-    text("Game", windowWidth / 2 + 475, windowHeight / 2);
-    text("Over", windowWidth / 2 + 495, windowHeight / 2 + 75);
+    text("Game", width / 2 + 475, height / 2);
+    text("Over", width / 2 + 495, height / 2 + 75);
 
     noLoop(); // Stop the game loop
     this.gameOver = true; // Set game over flag
@@ -76,7 +76,7 @@ class flappyBird {
   showScore() {
     fill(0);
     textSize(90);
-    text("score: " + this.score, windowWidth / 2 + 465, windowHeight / 2 - 100);
+    text("score: " + this.score, width / 2 + 465, height / 2 - 100);
   }
 
   // Function to handle player controls
@@ -91,13 +91,13 @@ class flappyBird {
   restartButton() {
     // Draw restart button
     fill(150);
-    rect(windowWidth / 2 - 100, 850, 200, 50);
+    rect(width / 2 - 100, 850, 200, 50);
     textSize(60);
     fill(0);
-    text("restart", windowWidth / 2 - 80, 890);
+    text("restart", width / 2 - 80, 890);
 
     // Check if mouse clicks on restart button
-    if (mouseX >= windowWidth / 2 - 100 && mouseX <= windowWidth / 2 + 100 &&
+    if (mouseX >= width / 2 - 100 && mouseX <= width / 2 + 100 &&
       mouseY >= 850 && mouseY <= 900 && mouseIsPressed === true) {
       // Reset game state
       this.gameOver = false;

@@ -1,17 +1,18 @@
 class pongGame {
   constructor() {
     // Initialize game positions and speeds
-    this.gameX = windowWidth / 2 - 400;
-    this.gameY = windowHeight / 2 - 450;
+    this.gameX = width / 2 - 400;
+    this.gameY = height / 2 - 450;
     this.ballX = width / 2;
     this.ballY = height / 2;
     this.ballXSpeed = 6;
     this.ballYSpeed = 3;
-    this.playerAX = windowWidth / 2 - 400 + 25;
+    this.playerAX = width / 2 - 400 + 25;
     this.playerAY = height / 2;
-    this.playerBX = windowWidth / 2 - 400 + 760;
+    this.playerBX = width / 2 - 400 + 760;
     this.playerBY = height / 2;
     this.space = 50;
+    this.playerTurn = "B"
 
     // Initialize player scores and game state
     this.playerAScore = 0;
@@ -44,6 +45,16 @@ class pongGame {
     this.losing(); // Handle score updates and ball reset
 
     this.showingScore(); // Display current scores
+    this.whichPlayer();
+  }
+
+  whichPlayer() {
+    if (this.ballXSpeed > 1) {
+      this.playerTurn = "B"
+    }
+    if (this.ballXSpeed < 1) {
+      this.playerTurn = "A"
+    }
   }
 
   bouncing() {
@@ -65,34 +76,42 @@ class pongGame {
 
   playerAMovement() {
     // Handle player A movement
-    if (keyIsPressed && keyCode === 87 && this.playerAY > 50) {
-      this.playerAY -= 10; // Move up
-    }
-    if (keyIsPressed && keyCode === 83 && this.playerAY + 50 < 800) {
-      this.playerAY += 10; // Move down
+    if (this.playerTurn === "A") {
+
+
+      if (keyIsPressed && keyCode === 87 && this.playerAY > 50) {
+        this.playerAY -= 10; // Move up
+      }
+      if (keyIsPressed && keyCode === 83 && this.playerAY + 60 < 800) {
+        this.playerAY += 10; // Move down
+      }
     }
   }
 
   playerBMovement() {
     // Handle player B movement
-    if (keyIsPressed && keyCode === 38 && this.playerBY > 50) {
-      this.playerBY -= 10; // Move up
-    }
-    if (keyIsPressed && keyCode === 40 && this.playerBY + 50 < 800) {
-      this.playerBY += 10; // Move down
+    if (this.playerTurn === "B") {
+
+
+      if (keyIsPressed && keyCode === 38 && this.playerBY > 50) {
+        this.playerBY -= 10; // Move up
+      }
+      if (keyIsPressed && keyCode === 40 && this.playerBY + 60 < 800) {
+        this.playerBY += 10; // Move down
+      }
     }
   }
 
   mainHubInPong() {
     // Draw main menu button in Pong game
     fill(150);
-    rect(windowWidth / 2 - 400, 850, 200, 50); // Button rectangle
+    rect(width / 2 - 400, 850, 200, 50); // Button rectangle
     textSize(30);
     fill(0);
-    text("Back To Menu", windowWidth / 2 - 390, 890); // Button text
+    text("Back To Menu", width / 2 - 390, 890); // Button text
 
     // Check if mouse is pressed on the button
-    if (mouseX >= windowWidth / 2 - 400 && mouseX <= windowWidth / 2 - 400 + 200 && mouseY >= 850 && mouseY <= 900 && mouseIsPressed) {
+    if (mouseX >= width / 2 - 400 && mouseX <= width / 2 - 400 + 200 && mouseY >= 850 && mouseY <= 900 && mouseIsPressed) {
       background(200); // Clear screen
       loop(); // Restart animation loop
       mainHubActive = true; // Set main hub active
@@ -130,28 +149,33 @@ class pongGame {
     // Reset ball position and direction
     this.ballX = this.gameX + 400; // Reset ball X position
     this.ballY = this.gameY + 400; // Reset ball Y position
-    this.ballXSpeed *= random() > 0.5 ? 1 : -1; // Randomize ball X direction
-    this.ballYSpeed *= random() > 0.5 ? 1 : -1; // Randomize ball Y direction
+
+
+    this.playerAY = height / 2;
+
+    this.playerBY = height / 2;
+
+
   }
 
   showingScore() {
     // Display player scores
     fill(0);
     textSize(20);
-    text("Player A Score: " + this.playerAScore, windowWidth / 2 - 390, 40); // Player A score
-    text("Player B Score: " + this.playerBScore, windowWidth / 2 + 290, 40); // Player B score
+    text("Player A Score: " + this.playerAScore, width / 2 - 390, 40); // Player A score
+    text("Player B Score: " + this.playerBScore, width / 2 + 290, 40); // Player B score
   }
 
   resumeButton() {
     // Display and handle resume button
     fill(150);
-    rect(windowWidth / 2 - 400, 925, 200, 50); // Resume button rectangle
+    rect(width / 2 - 400, 925, 200, 50); // Resume button rectangle
     textSize(30);
     fill(0);
-    text("Resume", windowWidth / 2 - 370, 965); // Resume button text
+    text("Resume", width / 2 - 370, 965); // Resume button text
 
     // Check if mouse is pressed on the resume button
-    if (mouseX >= windowWidth / 2 - 400 && mouseX <= windowWidth / 2 - 400 + 200 && mouseY >= 925 && mouseY <= 975 && mouseIsPressed) {
+    if (mouseX >= width / 2 - 400 && mouseX <= width / 2 - 400 + 200 && mouseY >= 925 && mouseY <= 975 && mouseIsPressed) {
       loop(); // Restart animation loop
       pongActive = false; // Set Pong game inactive
     }

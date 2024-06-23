@@ -1,6 +1,5 @@
 class mainHub {
   constructor() {
-    this.bg; // Placeholder for background image or color
   }
 
   goToMenu() {
@@ -14,6 +13,9 @@ class mainHub {
   }
 
   playSnake() {
+    text("Retro Games Collection!", width / 2 - 210, height / 2 - 250, 890);
+
+
     // Draw Snake button
     fill(150);
     rect(width / 2 - 100, height / 2 - 25, 200, 50,25);

@@ -37,6 +37,10 @@ class flappyBird {
     text("Game", width / 2 + 475, height / 2);
     text("Over", width / 2 + 495, height / 2 + 75);
 
+    textSize(65)
+    text("Left click",width/2 + 490, height/2 + 300)
+    text("to see options",width/2 + 450, height/2 + 350)
+
     noLoop(); // Stop the game loop
     this.gameOver = true; // Set game over flag
     this.score = 0; // Reset score
@@ -76,7 +80,7 @@ class flappyBird {
   showScore() {
     fill(0);
     textSize(90);
-    text("score: " + this.score, width / 2 + 465, height / 2 - 100);
+    text("Score: " + this.score, width / 2 + 465, height / 2 - 100);
   }
 
   // Function to handle player controls
@@ -91,7 +95,7 @@ class flappyBird {
   restartButton() {
     // Draw restart button
     fill(150);
-    rect(width / 2 - 100, 850, 200, 50);
+    rect(width / 2 - 100, 850, 200, 50,5);
     textSize(60);
     fill(0);
     text("restart", width / 2 - 80, 890);
@@ -140,7 +144,7 @@ class flappyBird {
   mainHubInFlappy() {
     // Draw back to menu button
     fill(150);
-    rect(50, 850, 200, 50);
+    rect(50, 850, 200, 50,5);
     textSize(30);
     fill(0);
     text("Back To Menu", 60, 890);

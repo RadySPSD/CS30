@@ -1,33 +1,49 @@
 class snakeGame {
   constructor() {
-    // Initialize game properties
     this.squareSize = 50; // Size of each square in the grid
-    this.gridX = 50; // Starting X position of the grid
-    this.gridY = 50; // Starting Y position of the grid
-    this.snakeX = 400; // Initial X position of the snake
-    this.snakeY = 400; // Initial Y position of the snake
-    this.direction = "right"; // Initial direction of the snake
-    this.foodX = 50 * Math.floor(random(1, 16)); // X position of the food
-    this.foodY = 50 * Math.floor(random(1, 16)); // Y position of the food
-    this.score = 0; // Initial score
-    this.moveSpeed = 50; // Speed at which the snake moves
-    this.otherSegments = []; // Array to hold additional snake segments (tail)
-    this.losing = false; // Flag to track if the game is over
-    this.foodCheckX = 0; // X position for checking food placement validity
-    this.foodCheckY = 0; // Y position for checking food placement validity
+    this.gridX = 50;
+    this.gridY = 50;
+    
+    // Initial position of the snake
+    this.snakeX = 400; 
+    this.snakeY = 400; 
+
+    // Initial direction of the snake
+    this.direction = "right"; 
+
+    // Initial position of the food
+    this.foodX = 50 * Math.floor(random(1, 16));
+    this.foodY = 50 * Math.floor(random(1, 16));
+
+    // Initial score
+    this.score = 0;
+
+    // Speed of snake movement
+    this.moveSpeed = 50; 
+
+    // Array to hold snake segments
+    this.otherSegments = []; 
+
+    // Game over flag
+    this.losing = false; 
+
+    // Checking food variable
+    this.foodCheckX = 0;
+    this.foodCheckY = 0;
   }
 
-  // Restart button functionality
-  restartButton() {
+  // Method that shows restart button
+  showRestartButton() {
     fill(150);
     rect(650, 850, 200, 50);
     textSize(60);
     fill(0);
     text("restart", 675, 890);
+  }
 
-    // Check if restart button is clicked
+  // Method that makes the restart button work
+  restartButton() {
     if (mouseX >= 650 && mouseX <= 850 && mouseY >= 850 && mouseY <= 900 && mouseIsPressed === true) {
-      // Reset game state
       this.losing = false;
       this.snakeX = 400;
       this.snakeY = 400;
@@ -40,205 +56,187 @@ class snakeGame {
     }
   }
 
-  // Menu button functionality (currently placeholder)
+  // Button that shows the menu button 
   MenuButton() {
     fill(150);
     rect(50, 850, 200, 50);
     textSize(30);
     fill(0);
     text("Back To Menu", 60, 890);
-
-    // Check if menu button is clicked
-    if (mouseX >= 50 && mouseX <= 250 && mouseY >= 850 && mouseY <= 900 && mouseIsPressed === true) {
-      print("menu"); // Placeholder action (print to console)
-    }
   }
 
-  // Spawn new segments for the snake (tail)
+  // Add new segment at snake's current position
   spawningSegments() {
-    this.otherSegments.push(new snakeSegment(this.snakeX, this.snakeY));
+    this.otherSegments.push(new snakeSegment(this.snakeX, this.snakeY)); 
   }
 
-  // Handle keyboard controls for the snake
   controls() {
-    if (keyCode === 65 || keyCode === LEFT_ARROW) { // Left arrow or 'A' key
-      if (this.snakeX > 50) {
-        if (this.direction !== "right") {
-          this.direction = "left"; // Change direction to left
-        }
+    // Update direction based on key presses
+    if (keyCode === 65 || keyCode === LEFT_ARROW) {
+      if (this.snakeX > 50 && this.direction !== "right") {
+        this.direction = "left";
       }
-    } else if (keyCode === 68 || keyCode === RIGHT_ARROW) { // Right arrow or 'D' key
-      if (this.snakeX < 800) {
-        if (this.direction !== "left") {
-          this.direction = "right"; // Change direction to right
-        }
+    } else if (keyCode === 68 || keyCode === RIGHT_ARROW) {
+      if (this.snakeX < 800 && this.direction !== "left") {
+        this.direction = "right";
       }
-    } else if (keyCode === 87 || keyCode === UP_ARROW) { // Up arrow or 'W' key
-      if (this.snakeY > 50) {
-        if (this.direction !== "down") {
-          this.direction = "up"; // Change direction to up
-        }
+    } else if (keyCode === 87 || keyCode === UP_ARROW) {
+      if (this.snakeY > 50 && this.direction !== "down") {
+        this.direction = "up";
       }
-    } else if (keyCode === 83 || keyCode === DOWN_ARROW) { // Down arrow or 'S' key
-      if (this.snakeY < 800) {
-        if (this.direction !== "up") {
-          this.direction = "down"; // Change direction to down
-        }
+    } else if (keyCode === 83 || keyCode === DOWN_ARROW) {
+      if (this.snakeY < 800 && this.direction !== "up") {
+        this.direction = "down";
       }
     }
   }
 
-  // Increase score and handle food collision
   increaseScore() {
+    // Check if snake head is on food
     if (this.snakeX === this.foodX && this.snakeY === this.foodY) {
-      this.score++; // Increment score
-      this.spawningSegments(); // Add new segment (tail) to the snake
-      this.foodCheck(); // Check and update food position
+      this.score++;
+      this.spawningSegments(); // Add new segment
+      this.foodCheck(); // Reposition food
     }
   }
 
-  // Check and update food position to ensure it doesn't overlap with snake
   foodCheck() {
-    this.foodCheckX = 50 * Math.floor(random(1, 16));
-    this.foodCheckY = 50 * Math.floor(random(1, 16));
+    // Ensure food does not spawn on snake
+    let validPosition = false;
+    while (!validPosition) {
+      this.foodCheckX = 50 * Math.floor(random(1, 16));
+      this.foodCheckY = 50 * Math.floor(random(1, 16));
+      validPosition = true;
 
-    if (this.foodCheckX !== this.snakeX && this.foodCheckX !== this.segmentX &&
-      this.foodCheckY !== this.snakeY && this.foodCheckY !== this.segmentY) {
-      this.foodX = this.foodCheckX;
-      this.foodY = this.foodCheckY;
+      if (this.foodCheckX === this.snakeX && this.foodCheckY === this.snakeY) {
+        validPosition = false;
+      }
+
+      for (let segment of this.otherSegments) {
+        if (this.foodCheckX === segment.segmentX && this.foodCheckY === segment.segmentY) {
+          validPosition = false;
+          break;
+        }
+      }
     }
+
+    this.foodX = this.foodCheckX;
+    this.foodY = this.foodCheckY;
   }
 
-  // Move the snake based on its direction
   moveSnake() {
-    if (frameCount % 10 === 0) { // Control snake movement speed
-      if (this.losing === false) { // Check if game is not over
-        this.updateTail(); // Update snake tail position
+    // Move snake at set intervals
+    if (frameCount % 10 === 0) {
+      if (!this.losing) {
+        let nextX = this.snakeX;
+        let nextY = this.snakeY;
 
-        // Check if snake goes out of bounds
-        if (this.snakeX > 800 || this.snakeX < 50 || this.snakeY > 800 || this.snakeY < 50) {
-          this.losing = true; // Game over if snake hits boundary
-          this.otherSegments.shift(); // Remove last segment from snake tail
-        } else if (this.direction === "right") {
-          this.snakeX += this.moveSpeed; // Move snake right
+        if (this.direction === "right") {
+          nextX += this.moveSpeed;
         } else if (this.direction === "left") {
-          this.snakeX -= this.moveSpeed; // Move snake left
+          nextX -= this.moveSpeed;
         } else if (this.direction === "down") {
-          this.snakeY += this.moveSpeed; // Move snake down
+          nextY += this.moveSpeed;
         } else if (this.direction === "up") {
-          this.snakeY -= this.moveSpeed; // Move snake up
+          nextY -= this.moveSpeed;
+        }
+
+        // Game over if snake hits the wall
+        if (nextX > 800 || nextX < 50 || nextY > 800 || nextY < 50) {
+          this.losing = true;
+        } 
+
+        // Update snake segments
+        else {
+          this.updateTail(nextX, nextY); 
+          this.snakeX = nextX;
+          this.snakeY = nextY;
         }
       }
     }
   }
 
-  // Update snake tail segments position
-  updateTail() {
-    if (this.losing !== true) {
-      for (let i = this.otherSegments.length - 1; i > 0; i--) {
-        if (this.losing === true) { // Check if game is over
-          // Display game over message
-          fill(0, 255, 0);
-          rect(width / 2 - 205, windowHeight / 2 - 65 + 1000, 430, 100);
-          fill(255, 0, 0);
-          textSize(100);
-          text("game over", width / 2 - 200, windowHeight / 2 + 1000);
-        } else {
-          // Update tail segment positions
-          this.otherSegments[i].segmentX = this.otherSegments[i - 1].segmentX;
-          this.otherSegments[i].segmentY = this.otherSegments[i - 1].segmentY;
+  updateTail(nextX, nextY) {
+    if (this.losing) return;
 
-          // Check if snake collides with itself
-          if (this.snakeX === this.otherSegments[i].segmentX && this.snakeY === this.otherSegments[i].segmentY) {
-            this.losing = true; // Game over if snake collides with itself
-          }
-        }
+    // Check if snake collides with itself
+    for (let i = this.otherSegments.length - 1; i > 0; i--) {
+      if (nextX === this.otherSegments[i].segmentX && nextY === this.otherSegments[i].segmentY) {
+        this.losing = true;
+        return;
       }
 
-      // Update the first segment to follow the snake's head
-      if (this.otherSegments.length > 0) {
-        this.otherSegments[0].segmentX = this.snakeX;
-        this.otherSegments[0].segmentY = this.snakeY;
-      }
+      this.otherSegments[i].segmentX = this.otherSegments[i - 1].segmentX;
+      this.otherSegments[i].segmentY = this.otherSegments[i - 1].segmentY;
+    }
+
+    // Move first segment to follow the head
+    if (this.otherSegments.length > 0) {
+      this.otherSegments[0].segmentX = this.snakeX;
+      this.otherSegments[0].segmentY = this.snakeY;
     }
   }
 
-  // Display the snake game
   display() {
     background(200); // Clear background
 
-    // Display game instructions
+    // Display game instructions and score
     fill(255, 0, 0);
     textSize(40);
-    text("Controls: W,A,S,D", width / 2 + 225, windowHeight - 700);
-    text("or", width / 2 + 350, windowHeight - 640);
-    text("Controls: Up,Down,Left,Right", width / 2 + 140, windowHeight - 590);
-    text("Score:" + this.score, width / 2 + 300, windowHeight - 400);
+    text("Controls: W,A,S,D", width / 2 + 225, height - 700);
+    text("or", width / 2 + 350, height - 640);
+    text("Arrow Keys", width / 2 + 270, height - 580);
+    text("Score: " + this.score, width / 2 + 310, height - 350);
 
     // Draw restart button
-    fill(150);
-    rect(650, 850, 200, 50);
-    textSize(60);
-    fill(0);
-    text("restart", 675, 890);
+    this.showRestartButton();
 
     // Draw menu button
-    fill(150);
-    rect(50, 850, 200, 50);
-    textSize(30);
-    fill(0);
-    text("Back To Menu", 60, 890);
+    this.MenuButton();
 
-    // Draw grid and game elements
-    for (this.gridX = 50; this.gridX < 913 - 100; this.gridX = this.gridX + this.squareSize) {
-      for (this.gridY = 50; this.gridY < 948 - 100; this.gridY = this.gridY + this.squareSize) {
-        rectMode = CENTER;
+    // Draw grid
+    stroke(0); // Set stroke color for the grid lines
+    for (let x = 50; x <= 800; x += 50) {
+      for (let y = 50; y <= 800; y += 50) {
         noFill();
-        rect(this.gridX, this.gridY, this.squareSize);
-
-        // Display game over message if the game is over
-        if (this.losing === true) {
-          fill(0, 255, 0);
-          rect(width / 2 + 155, windowHeight / 2 - 65, 430, 100);
-          fill(255, 0, 0);
-          textSize(100);
-          text("game over", width / 2 + 160, windowHeight / 2);
-        }
-
-        // Highlight snake head
-        if (this.gridX === this.snakeX && this.gridY === this.snakeY) {
-          fill(200, 0, 0);
-          rect(this.snakeX, this.snakeY, this.squareSize);
-        } else if (this.gridX === this.foodX && this.gridY === this.foodY) {
-          // Display food
-          fill(0, 0, 255);
-          rect(this.foodX, this.foodY, this.squareSize);
-        } else {
-          // Draw empty grid spaces
-          fill(255, 255, 255);
-          rect(this.gridX, this.gridY, this.squareSize);
-        }
+        rect(x, y, 50, 50);
       }
     }
 
-    // Display all snake segments
-    for (let q of this.otherSegments) {
-      q.display();
+    // Draw food
+    fill(0, 0, 255);
+    rect(this.foodX, this.foodY, this.squareSize, this.squareSize);
+
+    // Draw snake head
+    fill(200, 0, 0);
+    rect(this.snakeX, this.snakeY, this.squareSize, this.squareSize);
+
+    // Draw snake segments
+    for (let segment of this.otherSegments) {
+      segment.display();
+    }
+
+    // Display game over message if the game is over
+    if (this.losing === true) {
+      fill(0, 255, 0);
+      rect(width / 2 + 170, height / 2 - 45, 430, 100);
+      fill(255, 0, 0);
+      textSize(100);
+      text("game over", width / 2 + 170, height / 2 + 25);
     }
   }
 }
 
-// Class for individual snake segments (tail)
+// Class for creating new segments
 class snakeSegment {
   constructor(segmentX, segmentY) {
-    this.segmentX = segmentX; // X position of the segment
-    this.segmentY = segmentY; // Y position of the segment
-    this.squareSize = 50; // Size of each segment
+    this.segmentX = segmentX;
+    this.segmentY = segmentY;
+    this.squareSize = 50;
   }
 
-  // Display the snake segment
   display() {
-    fill(0, 255, 0); // Green color for segments
-    rect(this.segmentX, this.segmentY, this.squareSize); // Draw segment
+    fill(0, 255, 0);
+    rect(this.segmentX, this.segmentY, this.squareSize, this.squareSize);
   }
 }
